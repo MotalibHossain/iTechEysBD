@@ -1,0 +1,70 @@
+# ========================
+# Python
+# ========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+*.pyo
+
+# ========================
+# Virtual environments
+# ========================
+.venv/
+venv/
+env/
+ENV/
+.env/
+
+# ========================
+# Environment variables
+# ========================
+.env
+.env.local
+.env*.local
+
+# ========================
+# Django
+# ========================
+db.sqlite3
+db.sqlite3-journal
+staticfiles/
+mediafiles/
+media/
+*.log
+
+# ========================
+# Build / dist
+# ========================
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# ========================
+# Testing & Coverage
+# ========================
+.coverage
+coverage/
+htmlcov/
+.pytest_cache/
+.tox/
+
+# ========================
+# Celery
+# ========================
+celerybeat-schedule
+celerybeat.pid
+
+# ========================
+# Type checking
+# ========================
+.mypy_cache/
+.dmypy.json
+.pytype/
+
+# ========================
+# Package managers
+# ========================
+pip-log.txt
+pip-delete-this-directory.txt

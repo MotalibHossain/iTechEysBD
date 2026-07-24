@@ -1,0 +1,41 @@
+# ========================
+# Environment variables
+# ========================
+.env
+.env.local
+.env*.local
+
+# ========================
+# OS
+# ========================
+.DS_Store
+Thumbs.db
+
+# ========================
+# Editor
+# ========================
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.suo
+*.sw?
+
+# ========================
+# Logs
+# ========================
+logs/
+*.log
+
+# ========================
+# Docker
+# ========================
+docker-compose.override.yml
+
+# ========================
+# Misc
+# ========================
+*.pem
+tmp/
+temp/
