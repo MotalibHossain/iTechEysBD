@@ -2,6 +2,46 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
+/* ── Custom animations ── */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.35; }
+}
+@keyframes fadeup {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Custom Tailwind utilities ─────────────────────────────────────────────── */
+
+/* Newsreader serif font */
+@utility font-newsreader {
+  font-family: var(--font-newsreader), serif;
+}
+
+/* Fluid responsive font-size clamps */
+@utility text-clamp-hero {
+  font-size: clamp(28px, 3.4vw, 44px);
+}
+@utility text-clamp-feature {
+  font-size: clamp(24px, 2.6vw, 32px);
+}
+@utility text-clamp-newsletter {
+  font-size: clamp(28px, 4vw, 38px);
+}
+
+/* Named animations — used instead of inline style={{ animation: ... }} */
+@utility animate-ticker {
+  animation: ticker 34s linear infinite;
+}
+@utility animate-pulse-dot {
+  animation: pulse-dot 1.6s infinite;
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
