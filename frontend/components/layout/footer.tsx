@@ -53,8 +53,7 @@ const Footer = () => {
                 <span className="w-[13px] h-[13px] rounded-[4px] bg-white rotate-45 block" />
               </span>
               <span
-                className="font-bold text-[22px] tracking-[-0.4px]"
-                style={{ fontFamily: "var(--font-newsreader), serif" }}
+                className="font-bold text-[22px] tracking-[-0.4px] font-newsreader"
               >
                 iTech<span className="text-[#E63946]">Eys</span>
               </span>
