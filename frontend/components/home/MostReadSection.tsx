@@ -11,10 +11,10 @@ import { mostReadItems } from "@/lib/data/home-data";
 
 export default function MostReadSection() {
   return (
-    <section className="mt-[50px] mb-[10px]">
+    <section className="mb-2.5">
 
       {/* Section header */}
-      <div className="flex items-center gap-3.5 mb-[22px]">
+      <div className="flex items-center gap-3.5 mb-5.5">
         <h2
           className="font-semibold text-[28px] tracking-[-0.5px] font-newsreader"
         >
@@ -32,11 +32,11 @@ export default function MostReadSection() {
           <Link
             key={item.id}
             href="/article"
-            className="flex gap-[15px] items-center bg-white border border-[#EFEDE7] rounded-[14px] p-3 no-underline transition-all duration-[240ms] hover:border-[#16151A] hover:-translate-y-[3px] hover:shadow-[0_16px_30px_-22px_rgba(20,21,26,0.42)]"
+            className="flex gap-3.75 items-center bg-white border border-[#EFEDE7] rounded-[14px] p-3 no-underline transition-all duration-240 hover:border-[#16151A] hover:-translate-y-[3px] hover:shadow-[0_16px_30px_-22px_rgba(20,21,26,0.42)]"
           >
             {/* Large ordinal number */}
             <span
-              className={`flex-none text-[30px] font-bold w-[30px] text-center leading-none font-newsreader ${item.numClass}`}
+              className={`flex-none text-[30px] font-bold w-7.5 text-center leading-none font-newsreader ${item.numClass}`}
             >
               {item.num}
             </span>
