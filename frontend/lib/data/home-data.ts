@@ -7,6 +7,7 @@
 export const heroSlides = [
   {
     id: "hero1",
+    slug: "dollar-crisis-ramadan-commodity-shortage",
     image: "https://picsum.photos/seed/hero1/900/520",
     category: "Economy",
     author: "Motalib Rahman",
@@ -16,6 +17,7 @@ export const heroSlides = [
   },
   {
     id: "hero2",
+    slug: "2026-frontend-survey-what-teams-are-actually-shipping",
     image: "https://picsum.photos/seed/hero2/900/520",
     category: "Technology",
     author: "Sadia Karim",
@@ -25,6 +27,7 @@ export const heroSlides = [
   },
   {
     id: "hero3",
+    slug: "new-ai-model-changing-bangla-language-technology",
     image: "https://picsum.photos/seed/hero3/900/520",
     category: "AI",
     author: "Tanvir Ahmed",
@@ -36,11 +39,11 @@ export const heroSlides = [
 
 // ── Trending sidebar items ────────────────────────────────────────────────────
 export const trendingItems = [
-  { id: "t1", num: "1", category: "Technology", title: "আইএমএফ-এর ঋণ এলে ডলার সংকট কাটবে?",         image: "https://picsum.photos/seed/t1/120/80" },
-  { id: "t2", num: "2", category: "Startups",   title: "Dhaka's fintech founders raise a record quarter", image: "https://picsum.photos/seed/t2/120/80" },
-  { id: "t3", num: "3", category: "Science",    title: "Mapping the Bay of Bengal's deep currents",  image: "https://picsum.photos/seed/t3/120/80" },
-  { id: "t4", num: "4", category: "AI",         title: "নতুন এআই মডেল বদলে দিচ্ছে বাংলা প্রযুক্তি",   image: "https://picsum.photos/seed/t4/120/80" },
-  { id: "t5", num: "5", category: "Design",     title: "Designing for calm: slower interfaces",      image: "https://picsum.photos/seed/t5/120/80" },
+  { id: "t1", slug: "imf-loan-dollar-crisis-solution",                num: "1", category: "Technology", title: "আইএমএফ-এর ঋণ এলে ডলার সংকট কাটবে?",         image: "https://picsum.photos/seed/t1/120/80" },
+  { id: "t2", slug: "dhaka-fintech-founders-record-quarter",            num: "2", category: "Startups",   title: "Dhaka's fintech founders raise a record quarter", image: "https://picsum.photos/seed/t2/120/80" },
+  { id: "t3", slug: "mapping-bay-of-bengal-deep-currents",              num: "3", category: "Science",    title: "Mapping the Bay of Bengal's deep currents",  image: "https://picsum.photos/seed/t3/120/80" },
+  { id: "t4", slug: "new-ai-model-changing-bangla-technology",          num: "4", category: "AI",         title: "নতুন এআই মডেল বদলে দিচ্ছে বাংলা প্রযুক্তি",   image: "https://picsum.photos/seed/t4/120/80" },
+  { id: "t5", slug: "designing-for-calm-slower-interfaces",             num: "5", category: "Design",     title: "Designing for calm: slower interfaces",      image: "https://picsum.photos/seed/t5/120/80" },
 ];
 
 // ── Latest ticker headlines ───────────────────────────────────────────────────
@@ -58,6 +61,7 @@ export const tickerItems = [
 export const latestStories = [
   {
     id: "g1",
+    slug: "dollar-crisis-ramadan-commodity-shortage",
     image: "https://picsum.photos/seed/g1/560/340",
     avatar: "https://picsum.photos/seed/ga1/60/60",
     category: "Economy",
@@ -69,6 +73,7 @@ export const latestStories = [
   },
   {
     id: "g2",
+    slug: "2026-frontend-survey-what-teams-are-shipping",
     image: "https://picsum.photos/seed/g2/560/340",
     avatar: "https://picsum.photos/seed/ga2/60/60",
     category: "Technology",
@@ -80,6 +85,7 @@ export const latestStories = [
   },
   {
     id: "g3",
+    slug: "new-ai-model-changing-bangla-language-technology",
     image: "https://picsum.photos/seed/g3/560/340",
     avatar: "https://picsum.photos/seed/ga3/60/60",
     category: "AI",
@@ -91,6 +97,7 @@ export const latestStories = [
   },
   {
     id: "g4",
+    slug: "designing-for-calm-the-case-for-slower-interfaces",
     image: "https://picsum.photos/seed/g4/560/340",
     avatar: "https://picsum.photos/seed/ga4/60/60",
     category: "Design",
@@ -99,6 +106,30 @@ export const latestStories = [
     read: "4 min read",
     title: "Designing for calm: the case for slower interfaces",
     excerpt: "Not every product needs another notification. Restraint as a competitive feature.",
+  },
+  {
+    id: "g1",
+    slug: "dollar-crisis-ramadan-commodity-shortage",
+    image: "https://picsum.photos/seed/g1/560/340",
+    avatar: "https://picsum.photos/seed/ga1/60/60",
+    category: "Economy",
+    author: "Motalib Rahman",
+    date: "Jun 24, 2026",
+    read: "6 min read",
+    title: "ডলার সংকটে রমজানে ভোগ্যপণ্যের সংকটের আশঙ্কা",
+    excerpt: "রপ্তানি আয় ও রেমিট্যান্স সামান্য বাড়লেও আমদানি কমায় বাজারে চাপ পড়ছে।",
+  },
+   {
+    id: "g3",
+    slug: "new-ai-model-changing-bangla-language-technology",
+    image: "https://picsum.photos/seed/g3/560/340",
+    avatar: "https://picsum.photos/seed/ga3/60/60",
+    category: "AI",
+    author: "Tanvir Ahmed",
+    date: "Jun 22, 2026",
+    read: "5 min read",
+    title: "নতুন এআই মডেল বদলে দিচ্ছে বাংলা ভাষার প্রযুক্তি",
+    excerpt: "বাংলা টেক্সট জেনারেশন ও অনুবাদে নাটকীয় উন্নতি — নতুন সম্ভাবনার দুয়ার খুলছে।",
   },
 ];
 
@@ -119,6 +150,7 @@ export const trendingTags = [
 
 // ── Editor's Picks: cover story ───────────────────────────────────────────────
 export const editorFeature = {
+  slug: "dollar-crisis-ramadan-commodity-shortage",
   image: "https://picsum.photos/seed/mos1/700/500",
   author: "Motalib Rahman",
   date: "Jun 20, 2026",
@@ -129,6 +161,7 @@ export const editorFeature = {
 
 // ── Editor's Picks: top-right image card ─────────────────────────────────────
 export const editorPickTop = {
+  slug: "2026-frontend-survey-highlights",
   image: "https://picsum.photos/seed/mos2/300/200",
   category: "Technology",
   title: "The 2026 frontend survey highlights",
@@ -136,6 +169,7 @@ export const editorPickTop = {
 
 // ── Editor's Picks: accent gradient card ─────────────────────────────────────
 export const editorPickAccent = {
+  slug: "dollar-crisis-businesses-seek-new-strategies",
   category: "Profile",
   read: "5 min",
   title: "ডলার সংকটে নতুন কৌশল খুঁজছেন ব্যবসায়ীরা",
@@ -143,9 +177,9 @@ export const editorPickAccent = {
 
 // ── Editor's Picks: bottom row cards ─────────────────────────────────────────
 export const editorPicksRow = [
-  { id: "epr1", image: "https://picsum.photos/seed/epr1/150/150", category: "Health",   read: "4 min", title: "The four-day week experiments quietly working" },
-  { id: "epr2", image: "https://picsum.photos/seed/epr2/150/150", category: "Travel",   read: "7 min", title: "Sylhet's tea trails, slowly rediscovered" },
-  { id: "epr3", image: "https://picsum.photos/seed/epr3/150/150", category: "Science",  read: "6 min", title: "সিলেটের চা-বাগানে ফিরছে পর্যটক" },
+  { id: "epr1", slug: "four-day-week-experiments-quietly-working",  image: "https://picsum.photos/seed/epr1/150/150", category: "Health",   read: "4 min", title: "The four-day week experiments quietly working" },
+  { id: "epr2", slug: "sylhet-tea-trails-slowly-rediscovered",        image: "https://picsum.photos/seed/epr2/150/150", category: "Travel",   read: "7 min", title: "Sylhet's tea trails, slowly rediscovered" },
+  { id: "epr3", slug: "sylhet-tea-gardens-tourists-returning",        image: "https://picsum.photos/seed/epr3/150/150", category: "Science",  read: "6 min", title: "সিলেটের চা-বাগানে ফিরছে পর্যটক" },
 ];
 
 // ── Editor's Picks: tabbed list content ──────────────────────────────────────
@@ -182,18 +216,19 @@ export const editorTabs = {
 // ── Most Read this week ───────────────────────────────────────────────────────
 // numClass — Tailwind text-color class used directly in the component (avoids inline style)
 export const mostReadItems = [
-  { id: "mr1", num: "1", numClass: "text-[#E63946]", image: "https://picsum.photos/seed/mr1/130/130", category: "Economy",    views: "18.2k", read: "6 min", title: "আইএমএফ-এর ঋণ এলে ডলার সংকট কাটবে?" },
-  { id: "mr2", num: "2", numClass: "text-[#E63946]", image: "https://picsum.photos/seed/mr2/130/130", category: "Startups",   views: "12.7k", read: "5 min", title: "Dhaka's fintech founders raise a record quarter" },
-  { id: "mr3", num: "3", numClass: "text-[#E63946]", image: "https://picsum.photos/seed/mr3/130/130", category: "Mobile",     views: "9.4k",  read: "7 min", title: "স্মার্টফোন বাজারে স্থানীয় ব্র্যান্ডের উত্থান" },
-  { id: "mr4", num: "4", numClass: "text-[#D8D5CD]", image: "https://picsum.photos/seed/mr4/130/130", category: "DevOps",     views: "7.1k",  read: "9 min", title: "Self-hosting in 2026: the quiet comeback" },
-  { id: "mr5", num: "5", numClass: "text-[#D8D5CD]", image: "https://picsum.photos/seed/mr5/130/130", category: "Culture",    views: "6.3k",  read: "6 min", title: "Why long-form writing is winning again online" },
-  { id: "mr6", num: "6", numClass: "text-[#D8D5CD]", image: "https://picsum.photos/seed/mr6/130/130", category: "Technology", views: "5.8k",  read: "8 min", title: "The 2026 frontend survey: what teams ship" },
+  { id: "mr1", slug: "imf-loan-dollar-crisis-solution",                  num: "1", numClass: "text-[#E63946]", image: "https://picsum.photos/seed/mr1/130/130", category: "Economy",    views: "18.2k", read: "6 min", title: "আইএমএফ-এর ঋণ এলে ডলার সংকট কাটবে?" },
+  { id: "mr2", slug: "dhaka-fintech-founders-record-quarter",              num: "2", numClass: "text-[#E63946]", image: "https://picsum.photos/seed/mr2/130/130", category: "Startups",   views: "12.7k", read: "5 min", title: "Dhaka's fintech founders raise a record quarter" },
+  { id: "mr3", slug: "smartphone-market-local-brands-rise",               num: "3", numClass: "text-[#E63946]", image: "https://picsum.photos/seed/mr3/130/130", category: "Mobile",     views: "9.4k",  read: "7 min", title: "স্মার্টফোন বাজারে স্থানীয় ব্র্যান্ডের উত্থান" },
+  { id: "mr4", slug: "self-hosting-2026-the-quiet-comeback",               num: "4", numClass: "text-[#D8D5CD]", image: "https://picsum.photos/seed/mr4/130/130", category: "DevOps",     views: "7.1k",  read: "9 min", title: "Self-hosting in 2026: the quiet comeback" },
+  { id: "mr5", slug: "why-long-form-writing-is-winning-again-online",      num: "5", numClass: "text-[#D8D5CD]", image: "https://picsum.photos/seed/mr5/130/130", category: "Culture",    views: "6.3k",  read: "6 min", title: "Why long-form writing is winning again online" },
+  { id: "mr6", slug: "2026-frontend-survey-what-teams-ship",               num: "6", numClass: "text-[#D8D5CD]", image: "https://picsum.photos/seed/mr6/130/130", category: "Technology", views: "5.8k",  read: "8 min", title: "The 2026 frontend survey: what teams ship" },
 ];
 
 // ── Recommended reads (3-col) ─────────────────────────────────────────────────
 export const recommendedItems = [
   {
     id: "r1",
+    slug: "smartphone-market-local-brands-rise",
     image: "https://picsum.photos/seed/r1/560/380",
     avatar: "https://picsum.photos/seed/ra1/60/60",
     category: "Mobile",
@@ -204,6 +239,7 @@ export const recommendedItems = [
   },
   {
     id: "r2",
+    slug: "self-hosting-2026-the-quiet-comeback",
     image: "https://picsum.photos/seed/r2/560/380",
     avatar: "https://picsum.photos/seed/ra2/60/60",
     category: "DevOps",
@@ -214,6 +250,7 @@ export const recommendedItems = [
   },
   {
     id: "r3",
+    slug: "why-long-form-writing-is-winning-again-online",
     image: "https://picsum.photos/seed/r3/560/380",
     avatar: "https://picsum.photos/seed/ra3/60/60",
     category: "Culture",

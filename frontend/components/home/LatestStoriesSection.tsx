@@ -19,7 +19,7 @@ export default function LatestStoriesSection() {
       {/* ── Latest Stories grid ──────────────────────────────────────────────── */}
       <div>
         {/* Section header */}
-        <div className="flex items-baseline justify-between mb-[18px]">
+        <div className="flex items-baseline justify-between mb-4.5">
           <h2
             className="font-semibold text-[26px] tracking-[-0.4px] font-newsreader"
           >
@@ -31,7 +31,7 @@ export default function LatestStoriesSection() {
         </div>
 
         {/* 2×2 card grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-[22px]">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5.5">
           {latestStories.map((article) => (
             <Link
               key={article.id}
@@ -39,7 +39,7 @@ export default function LatestStoriesSection() {
               className="no-underline text-inherit bg-white border border-[#EFEDE7] rounded-[16px] overflow-hidden flex flex-col transition-all duration-[280ms] hover:-translate-y-[5px] hover:shadow-[0_22px_40px_-24px_rgba(20,21,26,0.42)] hover:border-[#E6E3DB]"
             >
               {/* Thumbnail */}
-              <div className="relative h-[168px] overflow-hidden">
+              <div className="relative h-42 overflow-hidden">
                 <Image
                   src={article.image}
                   alt={article.title}
@@ -48,7 +48,7 @@ export default function LatestStoriesSection() {
                   sizes="(max-width: 640px) 100vw, 280px"
                 />
                 {/* Subtle bottom fade */}
-                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/55 pointer-events-none" />
+                <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/55 pointer-events-none" />
 
                 {/* Category badge */}
                 <span className="absolute top-3 left-3 bg-white/94 text-[#16151A] text-[11px] font-bold tracking-[0.4px] uppercase px-[10px] py-[5px] rounded-[7px]">
@@ -57,7 +57,7 @@ export default function LatestStoriesSection() {
 
                 {/* Author avatar + name */}
                 <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
-                  <div className="relative w-[26px] h-[26px] rounded-full overflow-hidden border-2 border-white/70">
+                  <div className="relative w-6.5 h-6.5 rounded-full overflow-hidden border-2 border-white/70">
                     <Image
                       src={article.avatar}
                       alt={article.author}
@@ -95,7 +95,7 @@ export default function LatestStoriesSection() {
       <aside className="flex flex-col gap-5">
 
         {/* Popular Categories */}
-        <div className="bg-white border border-[#EFEDE7] rounded-[16px] px-[18px] pt-[18px] pb-2">
+        <div className="bg-white border border-[#EFEDE7] rounded-[16px] px-4.5 pt-4.5 pb-2">
           <h3 className="text-[12px] font-bold tracking-[1px] uppercase text-[#8E8D94] mb-1.5">
             Popular Categories
           </h3>
@@ -104,11 +104,11 @@ export default function LatestStoriesSection() {
               <Link
                 key={cat.id}
                 href="/category"
-                className="flex items-center gap-3 py-[11px] px-1 no-underline border-b border-[#F4F2EC] last:border-0 transition-all duration-200 hover:pl-2"
+                className="flex items-center gap-3 py-2.75 px-1 no-underline border-b border-[#F4F2EC] last:border-0 transition-all duration-200 hover:pl-2"
               >
                 {/* Icon */}
                 <span
-                  className="flex-none w-[34px] h-[34px] rounded-[9px] flex items-center justify-center font-extrabold text-[14px] font-newsreader"
+                  className="flex-none w-8.5 h-8.5 rounded-[9px] flex items-center justify-center font-extrabold text-[14px] font-newsreader"
                   style={{ background: cat.bg, color: cat.fg }}
                 >
                   {cat.glyph}
@@ -116,7 +116,7 @@ export default function LatestStoriesSection() {
                 <span className="text-[14px] font-semibold text-[#16151A] flex-1">
                   {cat.name}
                 </span>
-                <span className="text-[12px] font-bold text-[#8E8D94] bg-[#F4F2EC] px-[9px] py-[3px] rounded-full">
+                <span className="text-[12px] font-bold text-[#8E8D94] bg-[#F4F2EC] px-2.25 py-0.75 rounded-full">
                   {cat.count}
                 </span>
               </Link>
@@ -125,8 +125,8 @@ export default function LatestStoriesSection() {
         </div>
 
         {/* Trending Tags */}
-        <div className="bg-white border border-[#EFEDE7] rounded-[16px] p-[18px]">
-          <h3 className="text-[12px] font-bold tracking-[1px] uppercase text-[#8E8D94] mb-[14px]">
+        <div className="bg-white border border-[#EFEDE7] rounded-[16px] p-4.5">
+          <h3 className="text-[12px] font-bold tracking-[1px] uppercase text-[#8E8D94] mb-3.5">
             Trending Tags
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -134,7 +134,7 @@ export default function LatestStoriesSection() {
               <Link
                 key={tag}
                 href="/category"
-                className="text-[12.5px] font-semibold text-[#57565C] bg-[#F6F4EE] border border-[#EFEDE7] px-3 py-[6px] rounded-full no-underline transition-all duration-200 hover:bg-[#16151A] hover:text-white hover:border-[#16151A]"
+                className="text-[12.5px] font-semibold text-[#57565C] bg-[#F6F4EE] border border-[#EFEDE7] px-3 py-1.5 rounded-full no-underline transition-all duration-200 hover:bg-[#16151A] hover:text-white hover:border-[#16151A]"
               >
                 #{tag}
               </Link>
@@ -143,7 +143,7 @@ export default function LatestStoriesSection() {
         </div>
 
         {/* Author Spotlight */}
-        <div className="bg-white border border-[#EFEDE7] rounded-[16px] p-5 text-center">
+        {/* <div className="bg-white border border-[#EFEDE7] rounded-[16px] p-5 text-center">
           <span className="text-[11px] font-bold tracking-[0.8px] uppercase text-[#E63946]">
             Author Spotlight
           </span>
@@ -152,7 +152,7 @@ export default function LatestStoriesSection() {
           >
             Motalib Rahman
           </p>
-          <p className="text-[12.5px] leading-[1.5] text-[#8E8D94] mt-1.5">
+          <p className="text-[12.5px] leading-normal text-[#8E8D94] mt-1.5">
             Senior economy writer · 128 stories in বাংলা &amp; English
           </p>
           <Link
@@ -161,7 +161,7 @@ export default function LatestStoriesSection() {
           >
             Follow
           </Link>
-        </div>
+        </div> */}
       </aside>
     </div>
   );

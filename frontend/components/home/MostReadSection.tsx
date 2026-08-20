@@ -58,11 +58,11 @@ export default function MostReadSection() {
                 {item.category}
               </span>
               <h3
-                className="font-semibold text-[15px] leading-[1.22] mt-[3px] text-[#16151A] line-clamp-2 font-newsreader"
+                className="font-semibold text-[15px] leading-[1.22] mt-0.75 text-[#16151A] line-clamp-2 font-newsreader"
               >
                 {item.title}
               </h3>
-              <div className="flex items-center gap-1.5 text-[11px] text-[#8E8D94] mt-[5px]">
+              <div className="flex items-center gap-1.5 text-[11px] text-[#8E8D94] mt-1.25">
                 <Eye size={12} strokeWidth={2} />
                 <span>{item.views}</span>
                 <span>•</span>
