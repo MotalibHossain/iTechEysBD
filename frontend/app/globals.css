@@ -18,6 +18,13 @@
 
 /* ── Custom Tailwind utilities ─────────────────────────────────────────────── */
 
+/* Global container — locks the site-wide max-width to 1024 px */
+/* @utility container {
+  width: 100%;
+  max-width: 1280px;
+  margin-inline: auto;
+} */
+
 /* Newsreader serif font */
 @utility font-newsreader {
   font-family: var(--font-newsreader), serif;
