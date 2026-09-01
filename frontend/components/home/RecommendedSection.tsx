@@ -10,7 +10,7 @@ import { recommendedItems } from "@/lib/data/home-data";
 
 export default function RecommendedSection() {
   return (
-    <section className="py-14 pb-[10px]">
+    <section className="py-12">
 
       {/* Section header */}
       <div className="flex items-start justify-between mb-[22px]">
@@ -19,7 +19,7 @@ export default function RecommendedSection() {
             For You
           </span>
           <h2
-            className="font-semibold text-[28px] tracking-[-0.5px] mt-1 font-newsreader"
+            className="editorial-section-title mt-1"
           >
             Recommended Reads
           </h2>
@@ -33,7 +33,7 @@ export default function RecommendedSection() {
       </div>
 
       {/* 3-column card grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-[22px]">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 editorial-card-grid">
         {recommendedItems.map((article) => (
           <Link
             key={article.id}
@@ -41,7 +41,7 @@ export default function RecommendedSection() {
             className="no-underline text-inherit bg-white border border-[#EFEDE7] rounded-[16px] overflow-hidden flex flex-col transition-all duration-[280ms] hover:-translate-y-[5px] hover:shadow-[0_22px_40px_-24px_rgba(20,21,26,0.42)]"
           >
             {/* Thumbnail */}
-            <div className="relative h-[190px] overflow-hidden">
+            <div className="relative editorial-card-media overflow-hidden">
               <Image
                 src={article.image}
                 alt={article.title}

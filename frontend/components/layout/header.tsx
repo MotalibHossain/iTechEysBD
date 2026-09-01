@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 z-50 bg-white/[0.88] backdrop-saturate-[180%] backdrop-blur-[14px] border-b border-[#EAE8E2]">
-      <div className="container mx-auto px-4 md:px-7 h-[72px] flex items-center gap-4 lg:gap-[30px]">
+      <div className="page-shell h-[72px] flex items-center gap-4 lg:gap-[30px]">
 
         {/* Logo */}
         <Link

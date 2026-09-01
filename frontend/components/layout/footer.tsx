@@ -41,7 +41,7 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#16151A] text-[#C9C7CE] font-sans">
-      <div className="container mx-auto px-4 md:px-7 pt-14 pb-[30px]">
+      <div className="page-shell pt-14 pb-[30px]">
 
         {/* Main grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-[38px]">
