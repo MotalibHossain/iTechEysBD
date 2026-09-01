@@ -37,13 +37,11 @@ export default function RootLayout({
       lang="en"
       className={`${hankenGrotesk.variable} ${newsreader.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <Header />
-      <div className="container mx-auto">
-        <body className="min-h-full flex flex-col font-sans">
-          {children}
-        </body>
-      </div>
-      <Footer />
+      <body className="min-h-full flex flex-col font-sans">
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }

@@ -14,11 +14,11 @@ export default function Error({
     }, [error])
 
     return (
-        <div>
+        <main className="page-shell flex min-h-[50vh] flex-col items-center justify-center gap-4 text-center">
             <h2>Something went wrong!</h2>
             <button onClick={reset}>
                 Try again
             </button>
-        </div>
+        </main>
     );
 }
