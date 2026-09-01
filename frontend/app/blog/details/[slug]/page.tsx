@@ -19,8 +19,7 @@ export default function DetailsPage({ params }: { params: { slug: string } }) {
     <main>
       <ReadingProgress />
 
-      {/* Same px-7 container as homepage */}
-      <div className="px-7 pt-9.5">
+      <div className="page-shell pt-10">
 
         <ArticleHeader article={article} />
 
@@ -29,7 +28,7 @@ export default function DetailsPage({ params }: { params: { slug: string } }) {
         </div>
 
         {/* Body + sticky sidebar */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_290px] gap-14 mt-11.5 items-start">
+        <div className="article-content-grid mt-12 items-start">
           <ArticleBody article={article} />
           <ArticleSidebar article={article} />
         </div>

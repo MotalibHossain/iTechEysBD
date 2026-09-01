@@ -14,14 +14,14 @@ import {
 
 export default function LatestStoriesSection() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 mb-4">
+    <section className="home-content-grid">
 
       {/* ── Latest Stories grid ──────────────────────────────────────────────── */}
       <div>
         {/* Section header */}
         <div className="flex items-baseline justify-between mb-4.5">
           <h2
-            className="font-semibold text-[26px] tracking-[-0.4px] font-newsreader"
+            className="editorial-section-title"
           >
             Latest Stories
           </h2>
@@ -31,7 +31,7 @@ export default function LatestStoriesSection() {
         </div>
 
         {/* 2×2 card grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-5.5">
+        <div className="grid grid-cols-1 sm:grid-cols-3 editorial-card-grid">
           {latestStories.map((article) => (
             <Link
               key={article.id}
@@ -39,7 +39,7 @@ export default function LatestStoriesSection() {
               className="no-underline text-inherit bg-white border border-[#EFEDE7] rounded-[16px] overflow-hidden flex flex-col transition-all duration-[280ms] hover:-translate-y-[5px] hover:shadow-[0_22px_40px_-24px_rgba(20,21,26,0.42)] hover:border-[#E6E3DB]"
             >
               {/* Thumbnail */}
-              <div className="relative h-42 overflow-hidden">
+              <div className="relative editorial-card-media overflow-hidden">
                 <Image
                   src={article.image}
                   alt={article.title}
@@ -163,6 +163,6 @@ export default function LatestStoriesSection() {
           </Link>
         </div> */}
       </aside>
-    </div>
+    </section>
   );
 }

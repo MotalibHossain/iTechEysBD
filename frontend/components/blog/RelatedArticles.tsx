@@ -7,14 +7,14 @@ export default function RelatedArticles({ related }: { related: Article["related
     <section>
       {/* Section heading */}
       <div className="flex items-center gap-3.5 mb-6">
-        <h2 className="font-newsreader text-[28px] font-semibold tracking-[-0.5px] text-[#16151A] whitespace-nowrap">
+        <h2 className="editorial-section-title text-[#16151A] whitespace-nowrap">
           Related Articles
         </h2>
         <span className="flex-1 h-px bg-[#E6E3DB]" />
       </div>
 
       {/* Cards grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5.5">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 editorial-card-grid">
         {related.map((item) => (
           <Link
             key={item.slug}
@@ -22,7 +22,7 @@ export default function RelatedArticles({ related }: { related: Article["related
             className="group no-underline text-inherit bg-white border border-[#EFEDE7] rounded-[16px] overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1.25 hover:shadow-[0_22px_40px_-24px_rgba(20,21,26,0.42)]"
           >
             {/* Thumbnail */}
-            <div className="relative h-43 overflow-hidden">
+            <div className="relative editorial-card-media overflow-hidden">
               <Image
                 src={item.image}
                 alt={item.title}

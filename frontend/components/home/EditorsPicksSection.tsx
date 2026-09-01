@@ -25,12 +25,12 @@ export default function EditorsPicksSection() {
   const [activeTab, setActiveTab] = useState(0);
 
   return (
-    <section className="mt-8 mb-[10px]">
+    <section>
 
       {/* ── Section header ───────────────────────────────────────────────────── */}
       <div className="flex items-center gap-3.5 mb-5.5">
         <h2
-          className="font-semibold text-[28px] tracking-[-0.5px] font-newsreader"
+          className="editorial-section-title"
         >
           Editor&apos;s Picks
         </h2>
@@ -41,7 +41,7 @@ export default function EditorsPicksSection() {
       </div>
 
       {/* ── Content: mosaic + tabbed widget ──────────────────────────────────── */}
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6">
+      <div className="home-content-grid">
 
         {/* ── Mosaic grid ────────────────────────────────────────────────────── */}
         <div className="grid grid-cols-6 auto-rows-auto md:auto-rows-fr gap-4 md:min-h-130">

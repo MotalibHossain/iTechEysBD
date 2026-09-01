@@ -1,7 +1,7 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Home page — assembles all home sections in order.
 // Layout note:
-//   • Most sections sit inside the 1240px centred container.
+//   • Most sections sit inside the 1280px centred container.
 //   • NewsletterSection is intentionally full-width (no container wrapping).
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -16,20 +16,19 @@ import RecommendedSection from "@/components/home/RecommendedSection";
 export default function HomePage() {
   return (
     <main>
-      {/* ── Sections inside centred container ─────────────────────────────── */}
-      <div className="px-7 pt-7.5">
-        <HeroSection />
-        <LatestTicker />
-        <LatestStoriesSection />
-        <EditorsPicksSection />
-        <MostReadSection />
-        <NewsletterSection />
+      <div className="page-shell pt-8 md:pt-10">
+        <div className="section-stack">
+          <HeroSection />
+          <LatestTicker />
+          <LatestStoriesSection />
+          <EditorsPicksSection />
+          <MostReadSection />
+        </div>
       </div>
 
-      {/* ── Newsletter: spans full viewport width ──────────────────────────── */}
+      <NewsletterSection />
 
-      {/* ── Recommended: back inside the centred container ─────────────────── */}
-      <div className="px-7">
+      <div className="page-shell">
         <RecommendedSection />
       </div>
     </main>
