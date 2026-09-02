@@ -40,22 +40,20 @@ const Footer = () => {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-[#16151A] text-[#C9C7CE] font-sans">
-      <div className="page-shell pt-14 pb-[30px]">
+    <footer className="bg-surface-dark text-[#C9C7CE] font-sans mt-16">
+      <div className="container pt-14 pb-8">
 
         {/* Main grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-[38px]">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-[1.6fr_1fr_1fr_1fr] gap-10">
 
-          {/* Brand column */}
-          <div className="max-w-[300px]">
-            <Link href="/" className="flex items-center gap-[11px] text-white no-underline">
-              <span className="w-[34px] h-[34px] rounded-[10px] bg-[#E63946] flex items-center justify-center">
-                <span className="w-[13px] h-[13px] rounded-[4px] bg-white rotate-45 block" />
+          {/* Brand */}
+          <div className="max-w-75">
+            <Link href="/" className="flex items-center gap-2.75 text-white no-underline">
+              <span className="w-8.5 h-8.5 rounded-input bg-brand flex items-center justify-center">
+                <span className="w-3.25 h-3.25 rounded-sm bg-white rotate-45 block" />
               </span>
-              <span
-                className="font-bold text-[22px] tracking-[-0.4px] font-newsreader"
-              >
-                iTech<span className="text-[#E63946]">Eys</span>
+              <span className="font-bold text-[22px] tracking-[-0.4px] font-newsreader">
+                iTech<span className="text-brand">Eys</span>
               </span>
             </Link>
             <p className="text-sm leading-[1.65] text-[#8E8D94] mt-4">
@@ -67,7 +65,7 @@ const Footer = () => {
                   key={s.label}
                   href={s.href}
                   aria-label={s.label}
-                  className="w-[38px] h-[38px] rounded-[10px] border border-[#2E2C34] bg-[#1E1D23] flex items-center justify-center text-[#C9C7CE] text-[13px] font-bold no-underline transition-colors duration-200 hover:bg-[#E63946] hover:text-white hover:border-[#E63946]"
+                  className="w-9.5 h-9.5 rounded-input border border-line-dark bg-surface-dark-2 flex items-center justify-center text-[#C9C7CE] text-[13px] font-bold no-underline transition-colors duration-200 hover:bg-brand hover:text-white hover:border-brand"
                 >
                   {s.label}
                 </Link>
@@ -81,7 +79,7 @@ const Footer = () => {
               <h4 className="text-[13px] font-bold tracking-[0.8px] uppercase text-white mb-4">
                 {col.head}
               </h4>
-              <div className="flex flex-col gap-[11px]">
+              <div className="flex flex-col gap-3">
                 {col.items.map((item) => (
                   <Link
                     key={item.href}
@@ -97,7 +95,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="flex items-center justify-between flex-wrap gap-3 mt-11 pt-[22px] border-t border-[#2E2C34] text-[13px] text-[#6E6D75]">
+        <div className="flex items-center justify-between flex-wrap gap-3 mt-11 pt-6 border-t border-line-dark text-[13px] text-[#6E6D75]">
           <span>© {year} iTechEys. All rights reserved.</span>
           <span className="flex gap-5">
             <Link href="/privacy" className="text-[#6E6D75] no-underline hover:text-white transition-colors duration-200">Privacy</Link>
