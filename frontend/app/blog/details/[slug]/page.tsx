@@ -1,4 +1,4 @@
-
+import type { Metadata } from "next";
 import { articleData } from "@/lib/data/article-data";
 import ReadingProgress from "@/components/blog/ReadingProgress";
 import ArticleHeader from "@/components/blog/ArticleHeader";
@@ -8,38 +8,51 @@ import ArticleSidebar from "@/components/blog/ArticleSidebar";
 import RelatedArticles from "@/components/blog/RelatedArticles";
 import CommentsSection from "@/components/blog/CommentsSection";
 
+// Next 16: params is a Promise and must be awaited.
+type Params = Promise<{ slug: string }>;
+
 function getArticle(_slug: string) {
   return articleData;
 }
 
-export default function DetailsPage({ params }: { params: { slug: string } }) {
-  const article = getArticle(params.slug);
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticle(slug);
+  return {
+    title: article.title,
+    description: article.subtitle,
+    alternates: { canonical: `/blog/details/${slug}` },
+    openGraph: {
+      type: "article",
+      title: article.title,
+      description: article.subtitle,
+      images: article.heroImage ? [article.heroImage] : undefined,
+    },
+  };
+}
+
+export default async function DetailsPage({ params }: { params: Params }) {
+  const { slug } = await params;
+  const article = getArticle(slug);
 
   return (
-    <main>
+    <>
       <ReadingProgress />
 
-      <div className="page-shell pt-10">
-
+      {/* Single container + flex-col gap = one place to tune vertical rhythm */}
+      <main className="container py-10 flex flex-col gap-12">
         <ArticleHeader article={article} />
+        <ArticleHero article={article} />
 
-        <div className="mt-7.5">
-          <ArticleHero article={article} />
-        </div>
-
-        {/* Body + sticky sidebar */}
-        <div className="article-content-grid mt-12 items-start">
+        {/* Body + sticky sidebar. Sidebar width comes from --sidebar-w. */}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_var(--sidebar-w)] gap-10 items-start">
           <ArticleBody article={article} />
           <ArticleSidebar article={article} />
         </div>
 
-        <div className="mt-16">
-          <RelatedArticles related={article.related} />
-        </div>
-
+        <RelatedArticles related={article.related} />
         <CommentsSection initialComments={article.comments} />
-
-      </div>
-    </main>
+      </main>
+    </>
   );
 }

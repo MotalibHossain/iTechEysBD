@@ -1,8 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// Home page — assembles all home sections in order.
-// Layout note:
-//   • Most sections sit inside the 1280px centred container.
-//   • NewsletterSection is intentionally full-width (no container wrapping).
+// Home page. Layout rules:
+//   • `container` = one place that controls max-width & horizontal gutter.
+//   • `flex-col gap-*` on <main> is the single source of vertical rhythm.
+//     Change the gap here and every section spacing on the homepage updates.
 // ─────────────────────────────────────────────────────────────────────────────
 
 import HeroSection from "@/components/home/HeroSection";
@@ -15,22 +15,14 @@ import RecommendedSection from "@/components/home/RecommendedSection";
 
 export default function HomePage() {
   return (
-    <main>
-      <div className="page-shell pt-8 md:pt-10">
-        <div className="section-stack">
-          <HeroSection />
-          <LatestTicker />
-          <LatestStoriesSection />
-          <EditorsPicksSection />
-          <MostReadSection />
-        </div>
-      </div>
-
+    <main className="container mx-auto py-8 flex flex-col gap-12">
+      <HeroSection />
+      <LatestTicker />
+      <LatestStoriesSection />
+      <EditorsPicksSection />
+      <MostReadSection />
       <NewsletterSection />
-
-      <div className="page-shell">
-        <RecommendedSection />
-      </div>
+      <RecommendedSection />
     </main>
   );
 }
