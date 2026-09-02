@@ -1,88 +1,65 @@
+"use client";
+
 // ─────────────────────────────────────────────────────────────────────────────
 // LatestStoriesSection
-// Left  : 2×2 article card grid
-// Right : Sidebar with Popular Categories, Trending Tags, Author Spotlight
+// Left  : 3-col article card grid
+// Right : Sidebar with Popular Categories + Trending Tags
 // ─────────────────────────────────────────────────────────────────────────────
 
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  latestStories,
-  popularCategories,
-  trendingTags,
-} from "@/lib/data/home-data";
+import { latestStories, editorTabs } from "@/lib/data/home-data";
+import SectionHeader from "@/components/ui/SectionHeader";
+import { trendingTags } from "@/lib/data/home-data";
 
 export default function LatestStoriesSection() {
+  const [activeTab, setActiveTab] = useState(0);
+
   return (
-    <section className="home-content-grid">
+    <section className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_var(--sidebar-w)] gap-6">
 
-      {/* ── Latest Stories grid ──────────────────────────────────────────────── */}
+      {/* Grid ────────────────────────────────────────────────────────────── */}
       <div>
-        {/* Section header */}
-        <div className="flex items-baseline justify-between mb-4.5">
-          <h2
-            className="editorial-section-title"
-          >
-            Latest Stories
-          </h2>
-          <Link href="/category" className="text-[13.5px] font-semibold text-[#E63946] no-underline">
-            View all →
-          </Link>
-        </div>
+        <SectionHeader title="Latest Stories" linkHref="/category" variant="split" />
 
-        {/* 2×2 card grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 editorial-card-grid">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {latestStories.map((article) => (
             <Link
               key={article.id}
-              href="/article"
-              className="no-underline text-inherit bg-white border border-[#EFEDE7] rounded-[16px] overflow-hidden flex flex-col transition-all duration-[280ms] hover:-translate-y-[5px] hover:shadow-[0_22px_40px_-24px_rgba(20,21,26,0.42)] hover:border-[#E6E3DB]"
+              href={`/blog/details/${article.slug}`}
+              className="no-underline text-inherit bg-surface border border-line rounded-card-lg overflow-hidden flex flex-col transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_40px_-24px_rgba(20,21,26,0.42)] hover:border-line-3"
             >
-              {/* Thumbnail */}
-              <div className="relative editorial-card-media overflow-hidden">
+              <div className="relative aspect-16/10 overflow-hidden">
                 <Image
                   src={article.image}
                   alt={article.title}
                   fill
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.2,0.7,0.2,1)] hover:scale-[1.07]"
-                  sizes="(max-width: 640px) 100vw, 280px"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 300px"
                 />
-                {/* Subtle bottom fade */}
                 <div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-black/55 pointer-events-none" />
-
-                {/* Category badge */}
-                <span className="absolute top-3 left-3 bg-white/94 text-[#16151A] text-[11px] font-bold tracking-[0.4px] uppercase px-[10px] py-[5px] rounded-[7px]">
+                <span className="absolute top-3 left-3 bg-white/95 text-ink text-[11px] font-bold tracking-[0.4px] uppercase px-2.5 py-1 rounded-badge">
                   {article.category}
                 </span>
-
-                {/* Author avatar + name */}
                 <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
-                  <div className="relative w-6.5 h-6.5 rounded-full overflow-hidden border-2 border-white/70">
-                    <Image
-                      src={article.avatar}
-                      alt={article.author}
-                      fill
-                      className="object-cover"
-                      sizes="26px"
-                    />
+                  <div className="relative w-6 h-6 rounded-full overflow-hidden border-2 border-white/70">
+                    <Image src={article.avatar} alt={article.author} fill className="object-cover" sizes="24px" />
                   </div>
                   <span className="text-[12.5px] font-semibold">{article.author}</span>
                 </div>
               </div>
 
-              {/* Text body */}
               <div className="p-4 flex flex-col flex-1">
-                <h3
-                  className="font-semibold text-[18.5px] leading-[1.24] tracking-[-0.2px] text-[#16151A] font-newsreader"
-                >
+                <h3 className="font-semibold text-[18px] leading-tight tracking-[-0.2px] text-ink font-newsreader">
                   {article.title}
                 </h3>
-                <p className="text-[13.5px] leading-[1.55] text-[#6B6A70] mt-2 line-clamp-2">
+                <p className="text-[13.5px] leading-[1.55] text-ink-2 mt-2 line-clamp-2">
                   {article.excerpt}
                 </p>
-                <div className="flex items-center gap-2 mt-auto pt-3 text-[12px] text-[#8E8D94]">
+                <div className="flex items-center gap-2 mt-auto pt-3 text-[12px] text-ink-3">
                   <span>{article.date}</span>
-                  <span className="text-[#D8D5CD]">|</span>
+                  <span className="text-line-3">|</span>
                   <span>{article.read}</span>
                 </div>
               </div>
@@ -91,42 +68,43 @@ export default function LatestStoriesSection() {
         </div>
       </div>
 
-      {/* ── Sidebar ──────────────────────────────────────────────────────────── */}
-      <aside className="flex flex-col gap-5">
-
-        {/* Popular Categories */}
-        <div className="bg-white border border-[#EFEDE7] rounded-[16px] px-4.5 pt-4.5 pb-2">
-          <h3 className="text-[12px] font-bold tracking-[1px] uppercase text-[#8E8D94] mb-1.5">
-            Popular Categories
-          </h3>
-          <div className="flex flex-col">
-            {popularCategories.map((cat) => (
-              <Link
-                key={cat.id}
-                href="/category"
-                className="flex items-center gap-3 py-2.75 px-1 no-underline border-b border-[#F4F2EC] last:border-0 transition-all duration-200 hover:pl-2"
+      {/* Tabbed widget ─────────────────────────────────────────────────── */}
+      <div className="space-y-5 mt-1.5">
+        <aside className="bg-surface border border-line rounded-card-lg overflow-hidden self-start">
+          <div className="flex">
+            {editorTabs.labels.map((label, i) => (
+              <button
+                key={label}
+                onClick={() => setActiveTab(i)}
+                className={`flex-1 py-4 px-2 text-[13.5px] font-bold transition-colors duration-200 cursor-pointer border-b-2 ${i === activeTab
+                  ? "bg-surface text-brand border-b-brand"
+                  : "bg-[#FAF7F2] text-ink-3 border-b-line"
+                  }`}
               >
-                {/* Icon */}
-                <span
-                  className="flex-none w-8.5 h-8.5 rounded-[9px] flex items-center justify-center font-extrabold text-[14px] font-newsreader"
-                  style={{ background: cat.bg, color: cat.fg }}
-                >
-                  {cat.glyph}
-                </span>
-                <span className="text-[14px] font-semibold text-[#16151A] flex-1">
-                  {cat.name}
-                </span>
-                <span className="text-[12px] font-bold text-[#8E8D94] bg-[#F4F2EC] px-2.25 py-0.75 rounded-full">
-                  {cat.count}
+                {label}
+              </button>
+            ))}
+          </div>
+
+          <div className="px-1 py-1.5">
+            {editorTabs.lists[activeTab].map((headline, i) => (
+              <Link
+                key={i}
+                href={`/blog/details/${encodeURIComponent(headline)}`}
+                className="flex gap-3 items-start px-4 py-3.5 no-underline border-b border-line-4 last:border-0 transition-colors duration-200 hover:bg-[#FBF4F4] group"
+              >
+                <span className="flex-none text-brand font-extrabold">›</span>
+                <span className="text-[14.5px] leading-[1.4] text-ink font-medium group-hover:text-brand transition-colors font-newsreader">
+                  {headline}
                 </span>
               </Link>
             ))}
           </div>
-        </div>
 
+        </aside>
         {/* Trending Tags */}
-        <div className="bg-white border border-[#EFEDE7] rounded-[16px] p-4.5">
-          <h3 className="text-[12px] font-bold tracking-[1px] uppercase text-[#8E8D94] mb-3.5">
+        <div className="bg-surface border border-line rounded-card-lg p-4.5">
+          <h3 className="text-[12px] font-bold tracking-[1px] uppercase text-ink-3 mb-3.5">
             Trending Tags
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -134,35 +112,14 @@ export default function LatestStoriesSection() {
               <Link
                 key={tag}
                 href="/category"
-                className="text-[12.5px] font-semibold text-[#57565C] bg-[#F6F4EE] border border-[#EFEDE7] px-3 py-1.5 rounded-full no-underline transition-all duration-200 hover:bg-[#16151A] hover:text-white hover:border-[#16151A]"
+                className="text-[12.5px] font-semibold text-ink-2 bg-surface-warm border border-line px-3 py-1.5 rounded-full no-underline transition-all duration-200 hover:bg-ink hover:text-white hover:border-ink"
               >
                 #{tag}
               </Link>
             ))}
           </div>
         </div>
-
-        {/* Author Spotlight */}
-        {/* <div className="bg-white border border-[#EFEDE7] rounded-[16px] p-5 text-center">
-          <span className="text-[11px] font-bold tracking-[0.8px] uppercase text-[#E63946]">
-            Author Spotlight
-          </span>
-          <p
-            className="text-[19px] font-semibold mt-2.5 font-newsreader"
-          >
-            Motalib Rahman
-          </p>
-          <p className="text-[12.5px] leading-normal text-[#8E8D94] mt-1.5">
-            Senior economy writer · 128 stories in বাংলা &amp; English
-          </p>
-          <Link
-            href="/article"
-            className="inline-block mt-3.5 bg-[#16151A] text-white text-[12.5px] font-bold px-5 py-[9px] rounded-[9px] no-underline transition-colors duration-200 hover:bg-[#E63946]"
-          >
-            Follow
-          </Link>
-        </div> */}
-      </aside>
+      </div>
     </section>
   );
 }
