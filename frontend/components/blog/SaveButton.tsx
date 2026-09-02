@@ -9,7 +9,7 @@ export default function SaveButton() {
   return (
     <button
       onClick={() => setSaved((s) => !s)}
-      className="flex items-center gap-1.75 h-10 px-4 rounded-[11px] border border-[#EAE8E2] bg-white text-[#16151A] text-[13.5px] font-bold transition-colors duration-200 hover:border-[#16151A] cursor-pointer"
+      className="flex items-center gap-1.5 h-10 px-4 rounded-btn border border-line-2 bg-surface text-ink text-[13.5px] font-bold transition-colors duration-200 hover:border-ink cursor-pointer"
     >
       <Bookmark
         size={15}
