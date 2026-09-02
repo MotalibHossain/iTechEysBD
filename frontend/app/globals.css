@@ -2,93 +2,45 @@
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 
-/* ── Custom animations ── */
-@keyframes ticker {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-@keyframes pulse-dot {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0.35; }
-}
-@keyframes fadeup {
-  0%   { opacity: 0; transform: translateY(14px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-/* ── Custom Tailwind utilities ─────────────────────────────────────────────── */
-
-/* Newsreader serif font */
-@utility font-newsreader {
-  font-family: var(--font-newsreader), serif;
-}
-
-/* Fluid responsive font-size clamps */
-@utility text-clamp-hero {
-  font-size: clamp(28px, 3.4vw, 44px);
-}
-@utility text-clamp-feature {
-  font-size: clamp(24px, 2.6vw, 32px);
-}
-@utility text-clamp-newsletter {
-  font-size: clamp(28px, 4vw, 38px);
-}
-
-/* Named animations — used instead of inline style={{ animation: ... }} */
-@utility animate-ticker {
-  animation: ticker 34s linear infinite;
-}
-@utility animate-pulse-dot {
-  animation: pulse-dot 1.6s infinite;
-}
-
 @custom-variant dark (&:is(.dark *));
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
-  --color-sidebar-ring: var(--sidebar-ring);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar: var(--sidebar);
-  --color-chart-5: var(--chart-5);
-  --color-chart-4: var(--chart-4);
-  --color-chart-3: var(--chart-3);
-  --color-chart-2: var(--chart-2);
-  --color-chart-1: var(--chart-1);
-  --color-ring: var(--ring);
-  --color-input: var(--input);
-  --color-border: var(--border);
-  --color-destructive: var(--destructive);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-accent: var(--accent);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-muted: var(--muted);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-secondary: var(--secondary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-primary: var(--primary);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-popover: var(--popover);
-  --color-card-foreground: var(--card-foreground);
-  --color-card: var(--card);
-  --radius-sm: calc(var(--radius) * 0.6);
-  --radius-md: calc(var(--radius) * 0.8);
-  --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
-  --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
-}
-
+/* Design tokens — single source of truth */
 :root {
+  /* Layout ─────────────────────────────────────────────────────────────── */
+  /* --container: 1280px; */
+  --container-gutter: 1rem;         /* 16 px  – mobile */
+  --sidebar-w: 320px;               /* right-rail width used everywhere      */
+  --read-max: 720px;                /* article reading measure (~66 ch)      */
+
+  /* Brand */
+  --brand:         #E63946;
+  --brand-strong:  #C71F2E;
+  --brand-tint:    #FCE4E6;
+
+  /* Ink (text) */
+  --ink:    #16151A;
+  --ink-2:  #57565C;
+  --ink-3:  #8E8D94;
+  --ink-4:  #B0AEB6;
+  --ink-5:  #C4C2CA;
+
+  /* Surfaces */
+  --surface:              #FFFFFF;
+  --surface-2:            #FAF9F6;
+  --surface-warm:         #F6F4EE;
+  --surface-warm-strong:  #F1EFE9;
+  --surface-dark:         #16151A;
+  --surface-dark-2:       #1E1D23;
+  --surface-dark-3:       #26242B;
+
+  /* Lines / borders */
+  --line:      #EFEDE7;
+  --line-2:    #EAE8E2;
+  --line-3:    #E6E3DB;
+  --line-4:    #F4F2EC;
+  --line-dark: #2E2C34;
+
+  /* shadcn neutrals — light */
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
@@ -123,6 +75,116 @@
   --sidebar-ring: oklch(0.708 0 0);
 }
 
+@media (min-width: 768px)  { :root { --container-gutter: 1.5rem;  } }
+@media (min-width: 1024px) { :root { --container-gutter: 1.75rem; } }
+
+/* Expose tokens to Tailwind v4 utilities (bg-brand, text-ink, border-line, rounded-card, …) */
+@theme inline {
+  /* colors */
+  --color-brand:               var(--brand);
+  --color-brand-strong:        var(--brand-strong);
+  --color-brand-tint:          var(--brand-tint);
+  --color-ink:                 var(--ink);
+  --color-ink-2:               var(--ink-2);
+  --color-ink-3:               var(--ink-3);
+  --color-ink-4:               var(--ink-4);
+  --color-ink-5:               var(--ink-5);
+  --color-surface:             var(--surface);
+  --color-surface-2:           var(--surface-2);
+  --color-surface-warm:        var(--surface-warm);
+  --color-surface-warm-strong: var(--surface-warm-strong);
+  --color-surface-dark:        var(--surface-dark);
+  --color-surface-dark-2:      var(--surface-dark-2);
+  --color-surface-dark-3:      var(--surface-dark-3);
+  --color-line:                var(--line);
+  --color-line-2:              var(--line-2);
+  --color-line-3:              var(--line-3);
+  --color-line-4:              var(--line-4);
+  --color-line-dark:           var(--line-dark);
+
+  /* Radii */
+  --radius-badge:   8px;
+  --radius-input:  10px;
+  --radius-btn:    12px;
+  --radius-card:   14px;
+  --radius-card-lg: 18px;
+  --radius-card-xl: 22px;
+
+  /* shadcn mappings */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+}
+
+/* Custom utilities */
+
+/* Global container — width + horizontal gutter in one place */
+@utility container {
+  /* width: 100%; */
+  /* max-width: var(--container); */
+  margin-inline: auto;
+  padding-inline: var(--container-gutter);
+}
+
+/* Fluid font-size clamps */
+@utility text-hero       { font-size: clamp(24px, 3vw,   38px); }
+@utility text-feature    { font-size: clamp(22px, 2.4vw, 32px); }
+@utility text-newsletter { font-size: clamp(24px, 3.2vw, 34px); }
+@utility text-section    { font-size: clamp(22px, 2.4vw, 28px); }
+
+/* Newsreader serif shortcut */
+@utility font-newsreader { font-family: var(--font-newsreader), serif; }
+
+/* Animation shortcuts */
+@utility animate-ticker    { animation: ticker 34s linear infinite; }
+@utility animate-pulse-dot { animation: pulse-dot 1.6s infinite; }
+
+/* Keyframes */
+@keyframes ticker {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+@keyframes fadeup {
+  0%   { opacity: 0; transform: translateY(14px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* shadcn neutrals — dark */
 .dark {
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
@@ -158,13 +220,7 @@
 }
 
 @layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
-  html {
-    @apply font-sans;
-  }
+  * { @apply border-border outline-ring/50; }
+  html { @apply font-sans; }
+  body { @apply bg-surface-2 text-ink antialiased; }
 }

@@ -11,12 +11,12 @@ import { mostReadItems } from "@/lib/data/home-data";
 
 export default function MostReadSection() {
   return (
-    <section className="mb-2.5">
+    <section>
 
       {/* Section header */}
       <div className="flex items-center gap-3.5 mb-5.5">
         <h2
-          className="font-semibold text-[28px] tracking-[-0.5px] font-newsreader"
+          className="editorial-section-title"
         >
           Most Read This Week
         </h2>
@@ -27,7 +27,7 @@ export default function MostReadSection() {
       </div>
 
       {/* 3×2 numbered grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[14px_26px]">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 editorial-card-grid">
         {mostReadItems.map((item) => (
           <Link
             key={item.id}

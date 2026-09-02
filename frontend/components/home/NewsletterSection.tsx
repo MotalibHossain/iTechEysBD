@@ -19,8 +19,8 @@ export default function NewsletterSection() {
   }
 
   return (
-    <section className="mt-14 border-t border-b border-[#E6E3DB] bg-[linear-gradient(180deg,#F1EFE9,#EDEAE3)]">
-      <div className="max-w-170 mx-auto px-7 py-14.5 text-center">
+    <section className="border-t border-b border-[#E6E3DB] bg-[linear-gradient(180deg,#F1EFE9,#EDEAE3)]">
+      <div className="page-shell max-w-170 py-14.5 text-center">
 
         {/* Label */}
         <span className="inline-block text-[12px] font-bold tracking-[1.4px] uppercase text-[#E63946]">Newsletter</span>

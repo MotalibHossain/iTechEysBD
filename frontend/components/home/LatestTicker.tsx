@@ -15,7 +15,7 @@ export default function LatestTicker() {
   const loopItems = [...tickerItems, ...tickerItems];
 
   return (
-    <section className="flex items-stretch bg-[#16151A] rounded-[14px] overflow-hidden mb-9">
+    <section className="flex items-stretch bg-[#16151A] rounded-[14px] overflow-hidden">
 
       {/* ── "LATEST" badge ────────────────────────────────────────────────────── */}
       <div className="flex-none flex items-center gap-2 bg-[#E63946] text-white font-bold text-[13px] tracking-[0.8px] uppercase px-5">

@@ -23,27 +23,27 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "iTechEysbd",
-  description: "Technology, Programming, and Development Blog",
+  title: {
+    default: "iTechEys — Technology, Programming & Development",
+    template: "%s | iTechEys",
+  },
+  description:
+    "A modern publication on technology, programming and development — in English and বাংলা.",
+  metadataBase: new URL("https://itecheys.com"),
+  openGraph: { type: "website", siteName: "iTechEys" },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({children}: Readonly<{children: React.ReactNode}>) {
   return (
     <html
       lang="en"
-      className={`${hankenGrotesk.variable} ${newsreader.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${hankenGrotesk.variable} ${newsreader.variable} ${geistMono.variable}`}
     >
-      <Header />
-      <div className="container mx-auto">
-        <body className="min-h-full flex flex-col font-sans">
-          {children}
-        </body>
-      </div>
-      <Footer />
+      <body className="min-h-screen flex flex-col">
+        <Header />
+        <div className="flex-1">{children}</div>
+        <Footer />
+      </body>
     </html>
   );
 }

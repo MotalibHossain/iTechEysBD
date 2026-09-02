@@ -31,7 +31,7 @@ export default function HeroSection() {
   }, [next]);
 
   return (
-    <section className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-6 mb-7.5">
+    <section className="home-content-grid">
 
       {/* ── Carousel ─────────────────────────────────────────────────────────── */}
       <div className="relative rounded-[20px] overflow-hidden min-h-115 shadow-sm">

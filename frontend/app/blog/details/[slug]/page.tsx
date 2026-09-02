@@ -1,11 +1,58 @@
+import type { Metadata } from "next";
+import { articleData } from "@/lib/data/article-data";
+import ReadingProgress from "@/components/blog/ReadingProgress";
+import ArticleHeader from "@/components/blog/ArticleHeader";
+import ArticleHero from "@/components/blog/ArticleHero";
+import ArticleBody from "@/components/blog/ArticleBody";
+import ArticleSidebar from "@/components/blog/ArticleSidebar";
+import RelatedArticles from "@/components/blog/RelatedArticles";
+import CommentsSection from "@/components/blog/CommentsSection";
 
+// Next 16: params is a Promise and must be awaited.
+type Params = Promise<{ slug: string }>;
 
-export default function DetailsPage() {
-    return (
-        <main>
-            <div className="px-7 pt-7.5">
-                <h1 className="font-semibold text-[28px] tracking-[-0.5px] font-newsreader">Details Page</h1>
-            </div>
-        </main>
-    );
+function getArticle(_slug: string) {
+  return articleData;
+}
+
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticle(slug);
+  return {
+    title: article.title,
+    description: article.subtitle,
+    alternates: { canonical: `/blog/details/${slug}` },
+    openGraph: {
+      type: "article",
+      title: article.title,
+      description: article.subtitle,
+      images: article.heroImage ? [article.heroImage] : undefined,
+    },
+  };
+}
+
+export default async function DetailsPage({ params }: { params: Params }) {
+  const { slug } = await params;
+  const article = getArticle(slug);
+
+  return (
+    <>
+      <ReadingProgress />
+
+      {/* Single container + flex-col gap = one place to tune vertical rhythm */}
+      <main className="container py-10 flex flex-col gap-12">
+        <ArticleHeader article={article} />
+        <ArticleHero article={article} />
+
+        {/* Body + sticky sidebar. Sidebar width comes from --sidebar-w. */}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_var(--sidebar-w)] gap-10 items-start">
+          <ArticleBody article={article} />
+          <ArticleSidebar article={article} />
+        </div>
+
+        <RelatedArticles related={article.related} />
+        <CommentsSection initialComments={article.comments} />
+      </main>
+    </>
+  );
 }
