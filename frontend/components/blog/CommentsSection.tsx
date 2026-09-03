@@ -16,9 +16,9 @@ function IconInput(props: React.InputHTMLAttributes<HTMLInputElement> & { icon: 
   const { icon: Icon, ...rest } = props;
   return (
     <div className="relative">
-      <Icon size={14} strokeWidth={2} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#B0AEB6]" />
+      <Icon size={14} strokeWidth={2} className="absolute left-3.5 top-1/2 -translate-y-1/2 text-ink-4" />
       <input
-        className="w-full pl-10 pr-4 py-2.75 border border-[#EAE8E2] rounded-[11px] text-[14px] text-[#16151A] bg-white outline-none transition-all focus:border-[#E63946] focus:shadow-[0_0_0_3px_rgba(230,57,70,0.08)] placeholder:text-[#C4C2CA]"
+        className="w-full pl-10 pr-4 py-2.75 border border-line-2 rounded-btn text-[14px] text-ink bg-surface outline-none transition-all focus:border-brand focus:shadow-[0_0_0_3px_rgba(230,57,70,0.08)] placeholder:text-ink-5"
         {...rest}
       />
     </div>
@@ -36,15 +36,15 @@ function ReplyForm({ onPost, onCancel }: { onPost: (t: string) => void; onCancel
         onChange={(e) => setText(e.target.value)}
         placeholder="Write a reply…"
         rows={2}
-        className="w-full border border-[#EAE8E2] bg-white rounded-[11px] px-4 py-3 text-[14px] leading-normal text-[#16151A] outline-none resize-none transition-all focus:border-[#E63946] focus:shadow-[0_0_0_3px_rgba(230,57,70,0.08)] placeholder:text-[#C4C2CA]"
+        className="w-full border border-line-2 bg-surface rounded-btn px-4 py-3 text-[14px] leading-normal text-ink outline-none resize-none transition-all focus:border-brand focus:shadow-[0_0_0_3px_rgba(230,57,70,0.08)] placeholder:text-ink-5"
       />
       <div className="flex gap-2 justify-end mt-2">
-        <button onClick={onCancel} className="text-[13px] font-semibold text-[#8E8D94] hover:text-[#16151A] px-3 py-1.5 transition-colors cursor-pointer">
+        <button onClick={onCancel} className="text-[13px] font-semibold text-ink-3 hover:text-ink px-3 py-1.5 transition-colors cursor-pointer">
           Cancel
         </button>
         <button
           onClick={() => { const t = text.trim(); if (t) { onPost(t); setText(""); } }}
-          className="text-[13px] font-bold bg-[#16151A] text-white px-4 py-1.5 rounded-[9px] hover:bg-[#E63946] transition-colors cursor-pointer"
+          className="text-[13px] font-bold bg-ink text-white px-4 py-1.5 rounded-[9px] hover:bg-brand transition-colors cursor-pointer"
         >
           Reply
         </button>
@@ -57,14 +57,14 @@ function ReplyForm({ onPost, onCancel }: { onPost: (t: string) => void; onCancel
 
 function ReplyItem({ reply }: { reply: ArticleComment["replies"][number] }) {
   return (
-    <div className="flex gap-3 mt-4 pl-4 border-l-2 border-[#EAE8E2]">
-      <Avatar src={reply.avatar} alt={reply.name} size={30} className="border border-[#EFEDE7] mt-0.5 shrink-0" />
+    <div className="flex gap-3 mt-4 pl-4 border-l-2 border-line-2">
+      <Avatar src={reply.avatar} alt={reply.name} size={30} className="border border-line mt-0.5 shrink-0" />
       <div>
         <div className="flex items-center gap-2">
-          <span className="text-[13.5px] font-bold text-[#16151A]">{reply.name}</span>
-          <span className="text-[11.5px] text-[#C4C2CA]">{reply.time}</span>
+          <span className="text-[13.5px] font-bold text-ink">{reply.name}</span>
+          <span className="text-[11.5px] text-ink-5">{reply.time}</span>
         </div>
-        <p className="text-[14px] leading-[1.6] text-[#3C3B42] mt-0.75">{reply.body}</p>
+        <p className="text-[14px] leading-[1.6] text-ink-2 mt-1">{reply.body}</p>
       </div>
     </div>
   );
@@ -83,31 +83,28 @@ function CommentItem({
   const [liked, setLiked] = useState(false);
 
   return (
-    <div className="py-5 border-b border-[#EAE8E2] last:border-0">
+    <div className="py-5 border-b border-line-2 last:border-0">
       <div className="flex gap-3.5">
-        <Avatar src={comment.avatar} alt={comment.name} size={44} className="border-2 border-[#EFEDE7] shrink-0 mt-0.5" />
+        <Avatar src={comment.avatar} alt={comment.name} size={44} className="border-2 border-line shrink-0 mt-0.5" />
         <div className="flex-1 min-w-0">
-          {/* Name + time */}
           <div className="flex items-center gap-2.5 flex-wrap">
-            <span className="text-[15px] font-bold text-[#16151A]">{comment.name}</span>
-            <span className="text-[12px] text-[#C4C2CA]">{comment.time}</span>
+            <span className="text-[15px] font-bold text-ink">{comment.name}</span>
+            <span className="text-[12px] text-ink-5">{comment.time}</span>
           </div>
 
-          {/* Body */}
-          <p className="text-[15px] leading-[1.7] text-[#3C3B42] mt-1.5">{comment.body}</p>
+          <p className="text-[15px] leading-[1.7] text-ink-2 mt-1.5">{comment.body}</p>
 
-          {/* Actions */}
           <div className="flex items-center gap-4 mt-2.5">
             <button
               onClick={() => setLiked((l) => !l)}
-              className={`inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors cursor-pointer ${liked ? "text-[#E63946]" : "text-[#B0AEB6] hover:text-[#E63946]"}`}
+              className={`inline-flex items-center gap-1.5 text-[13px] font-semibold transition-colors cursor-pointer ${liked ? "text-brand" : "text-ink-4 hover:text-brand"}`}
             >
               <ThumbsUp size={13} strokeWidth={2} fill={liked ? "currentColor" : "none"} />
               {comment.likes + (liked ? 1 : 0)}
             </button>
             <button
               onClick={() => setReplying((r) => !r)}
-              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-[#B0AEB6] hover:text-[#16151A] transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[13px] font-semibold text-ink-4 hover:text-ink transition-colors cursor-pointer"
             >
               <MessageSquare size={13} strokeWidth={2} />
               Reply
@@ -187,30 +184,28 @@ export default function CommentsSection({ initialComments }: { initialComments: 
   const canSignup = signName.trim().length > 0 && signEmail.trim().length > 0;
 
   return (
-    <section className="mt-16 pb-20 pt-10 border-t border-[#EAE8E2]">
-      {/* Section heading */}
+    <section className="pt-10 border-t border-line-2">
       <div className="flex items-center gap-3 mb-7">
-        <MessageSquare size={20} strokeWidth={2} className="text-[#E63946]" />
-        <h2 className="font-newsreader text-[26px] font-semibold tracking-[-0.4px] text-[#16151A]">
+        <MessageSquare size={20} strokeWidth={2} className="text-brand" />
+        <h2 className="font-newsreader text-[26px] font-semibold tracking-[-0.4px] text-ink">
           Comments{" "}
-          <span className="text-[#C4C2CA] font-normal text-[22px]">({comments.length})</span>
+          <span className="text-ink-5 font-normal text-[22px]">({comments.length})</span>
         </h2>
       </div>
 
-      {/* ── Composer card ─────────────────────────────────────────────────── */}
-      <div className="bg-white border border-[#EFEDE7] rounded-[18px] overflow-hidden mb-8">
+      {/* Composer card ──────────────────────────────────────────────────── */}
+      <div className="bg-surface border border-line rounded-card-lg overflow-hidden mb-8">
 
-        {/* Tab switcher — hidden when signed in */}
         {!authed && (
-          <div className="grid grid-cols-2 border-b border-[#EAE8E2]">
+          <div className="grid grid-cols-2 border-b border-line-2">
             {(["guest", "signup"] as Tab[]).map((t) => (
               <button
                 key={t}
                 onClick={() => setTab(t)}
                 className={`py-3.5 text-[13.5px] font-bold transition-colors cursor-pointer ${
                   tab === t
-                    ? "text-[#E63946] border-b-2 border-[#E63946] -mb-px bg-white"
-                    : "text-[#8E8D94] bg-[#F6F4EE] hover:text-[#16151A]"
+                    ? "text-brand border-b-2 border-brand -mb-px bg-surface"
+                    : "text-ink-3 bg-surface-warm hover:text-ink"
                 }`}
               >
                 {t === "guest" ? "Comment as Guest" : "Create Account"}
@@ -220,17 +215,16 @@ export default function CommentsSection({ initialComments }: { initialComments: 
         )}
 
         <div className="p-5">
-          {/* Signed-in banner */}
           {authed && (
-            <div className="flex items-center gap-3 mb-4 p-3 bg-[#F6F4EE] rounded-[12px]">
+            <div className="flex items-center gap-3 mb-4 p-3 bg-surface-warm rounded-btn">
               <Avatar src="" alt={authed.name} size={36} />
               <div className="min-w-0">
-                <p className="text-[13.5px] font-bold text-[#16151A] truncate">{authed.name}</p>
-                <p className="text-[12px] text-[#8E8D94] truncate">{authed.email}</p>
+                <p className="text-[13.5px] font-bold text-ink truncate">{authed.name}</p>
+                <p className="text-[12px] text-ink-3 truncate">{authed.email}</p>
               </div>
               <button
                 onClick={() => setAuthed(null)}
-                className="ml-auto text-[12px] text-[#8E8D94] hover:text-[#E63946] transition-colors cursor-pointer shrink-0"
+                className="ml-auto text-[12px] text-ink-3 hover:text-brand transition-colors cursor-pointer shrink-0"
               >
                 Sign out
               </button>
@@ -253,16 +247,16 @@ export default function CommentsSection({ initialComments }: { initialComments: 
                 onChange={(e) => setDraft(e.target.value)}
                 placeholder="Share your thoughts…"
                 rows={3}
-                className="w-full border border-[#EAE8E2] bg-[#FAFAF9] rounded-[11px] px-4 py-3 text-[15px] leading-normal text-[#16151A] outline-none resize-y transition-all focus:border-[#E63946] focus:bg-white focus:shadow-[0_0_0_3px_rgba(230,57,70,0.08)] placeholder:text-[#C4C2CA]"
+                className="w-full border border-line-2 bg-surface-2 rounded-btn px-4 py-3 text-[15px] leading-normal text-ink outline-none resize-y transition-all focus:border-brand focus:bg-surface focus:shadow-[0_0_0_3px_rgba(230,57,70,0.08)] placeholder:text-ink-5"
               />
               <div className="flex items-center justify-between gap-3">
-                <p className="text-[12px] text-[#C4C2CA]">
+                <p className="text-[12px] text-ink-5">
                   {authed ? `Posting as ${authed.name}` : "Guest comment · moderated before publishing"}
                 </p>
                 <button
                   onClick={postComment}
                   disabled={!canPost}
-                  className="bg-[#E63946] text-white text-[14px] font-bold px-5 py-2.25 rounded-[10px] transition-colors hover:bg-[#C71F2E] cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
+                  className="bg-brand text-white text-[14px] font-bold px-5 py-2.5 rounded-input transition-colors hover:bg-brand-strong cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed shrink-0"
                 >
                   Post Comment
                 </button>
@@ -278,11 +272,11 @@ export default function CommentsSection({ initialComments }: { initialComments: 
               <button
                 onClick={handleSignup}
                 disabled={!canSignup}
-                className="w-full bg-[#16151A] text-white text-[14px] font-bold py-3 rounded-[11px] transition-colors hover:bg-[#E63946] cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
+                className="w-full bg-ink text-white text-[14px] font-bold py-3 rounded-btn transition-colors hover:bg-brand cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
               >
                 Create Account &amp; Start Commenting
               </button>
-              <p className="text-[12px] text-center text-[#C4C2CA]">
+              <p className="text-[12px] text-center text-ink-5">
                 Your email stays private and is never shared.
               </p>
             </div>
@@ -290,9 +284,8 @@ export default function CommentsSection({ initialComments }: { initialComments: 
         </div>
       </div>
 
-      {/* ── Comment list ──────────────────────────────────────────────────── */}
       {comments.length === 0 ? (
-        <div className="text-center py-14 text-[#C4C2CA]">
+        <div className="text-center py-14 text-ink-5">
           <MessageSquare size={36} className="mx-auto mb-3 opacity-30" />
           <p className="text-[15px] font-medium">No comments yet — be the first!</p>
         </div>
