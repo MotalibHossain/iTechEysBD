@@ -2,8 +2,11 @@
 
 // ─────────────────────────────────────────────────────────────────────────────
 // HeroSection
-// Left  : Auto-rotating image carousel with prev/next controls & dot indicators
+// Left  : Auto-rotating image carousel with prev/next controls & dots
 // Right : "Trending Now" numbered-thumbnail sidebar
+// Notes :
+//   • Sidebar width comes from --sidebar-w (globals.css) → change once.
+//   • Slide titles are <h3>: only ONE <h1> should exist per page (SEO).
 // ─────────────────────────────────────────────────────────────────────────────
 
 import { useState, useEffect, useCallback } from "react";
@@ -24,19 +27,16 @@ export default function HeroSection() {
     []
   );
 
-  // Auto-advance carousel every 5.5 s
   useEffect(() => {
     const iv = setInterval(next, 5500);
     return () => clearInterval(iv);
   }, [next]);
 
   return (
-    <section className="home-content-grid">
+    <section className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_var(--sidebar-w)] gap-6">
 
-      {/* ── Carousel ─────────────────────────────────────────────────────────── */}
-      <div className="relative rounded-[20px] overflow-hidden min-h-115 shadow-sm">
-
-        {/* Slides */}
+      {/* Carousel ───────────────────────────────────────────────────────── */}
+      <div className="relative rounded-card-xl overflow-hidden aspect-video lg:aspect-auto lg:min-h-110 shadow-sm">
         {heroSlides.map((slide, i) => (
           <article
             key={slide.id}
@@ -44,35 +44,27 @@ export default function HeroSection() {
               i === current ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
             }`}
           >
-            {/* Background image */}
             <Image
               src={slide.image}
               alt={slide.title}
               fill
               priority={i === 0}
               className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 860px"
+              sizes="(max-width: 1024px) 100vw, 800px"
             />
-
-            {/* Dark gradient so text is readable */}
             <div className="absolute inset-0 bg-linear-to-b from-black/5 via-black/20 to-black/90" />
 
-            {/* Article info at bottom */}
             <Link
               href={`/blog/details/${slide.slug}`}
-              className="absolute inset-x-0 bottom-0 px-10 pb-16 pt-9 text-white no-underline block"
+              className="absolute inset-x-0 bottom-0 px-6 md:px-10 pb-14 pt-8 text-white no-underline block"
             >
-              <span className="inline-block bg-[#E63946] text-white text-[11px] font-bold tracking-[0.6px] uppercase px-3 py-1.5 rounded-[7px]">
+              <span className="inline-block bg-brand text-white text-[11px] font-bold tracking-[0.6px] uppercase px-3 py-1.5 rounded-badge">
                 {slide.category}
               </span>
-
-              <h1
-                className="font-semibold leading-[1.12] tracking-tight mt-4 max-w-[80%] font-newsreader text-clamp-hero"
-              >
+              <h3 className="font-semibold leading-[1.15] tracking-tight mt-4 max-w-[85%] font-newsreader text-hero">
                 {slide.title}
-              </h1>
-
-              <div className="flex items-center gap-3 mt-4 text-[13.5px] text-white/90">
+              </h3>
+              <div className="flex items-center gap-3 mt-4 text-[13px] text-white/90">
                 <span className="font-bold">{slide.author}</span>
                 <span className="opacity-60">•</span>
                 <span>{slide.date}</span>
@@ -83,59 +75,53 @@ export default function HeroSection() {
           </article>
         ))}
 
-        {/* Prev arrow */}
+        {/* Nav arrows */}
         <button
           onClick={prev}
           aria-label="Previous slide"
-          className="absolute top-1/2 left-4.5 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#E63946] transition-colors duration-200 cursor-pointer"
+          className="absolute top-1/2 left-4 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm text-white flex items-center justify-center hover:bg-brand transition-colors duration-200 cursor-pointer"
         >
           <ChevronLeft size={20} strokeWidth={2.4} />
         </button>
-
-        {/* Next arrow */}
         <button
           onClick={next}
           aria-label="Next slide"
-          className="absolute top-1/2 right-4.5 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm text-white flex items-center justify-center hover:bg-[#E63946] transition-colors duration-200 cursor-pointer"
+          className="absolute top-1/2 right-4 -translate-y-1/2 z-10 w-11 h-11 rounded-full bg-white/15 backdrop-blur-sm text-white flex items-center justify-center hover:bg-brand transition-colors duration-200 cursor-pointer"
         >
           <ChevronRight size={20} strokeWidth={2.4} />
         </button>
 
-        {/* Dot indicators */}
-        <div className="absolute bottom-6 left-10 flex gap-2.5 z-10">
+        {/* Dots */}
+        <div className="absolute bottom-6 left-6 md:left-10 flex gap-2 z-10">
           {heroSlides.map((_, i) => (
             <button
               key={i}
               onClick={() => setCurrent(i)}
               aria-label={`Go to slide ${i + 1}`}
-              className={`h-1.2 rounded-full border-none transition-all duration-300 cursor-pointer ${
-                i === current ? "w-6.5 bg-white" : "w-2.5 bg-white/45"
+              className={`h-1.5 rounded-full transition-all duration-300 cursor-pointer ${
+                i === current ? "w-6 bg-white" : "w-2 bg-white/45"
               }`}
             />
           ))}
         </div>
       </div>
 
-      {/* ── Trending Now sidebar ──────────────────────────────────────────────── */}
-      <aside className="flex flex-col gap-3.25">
-
-        {/* Section label */}
+      {/* Trending sidebar ────────────────────────────────────────────────── */}
+      <aside className="flex flex-col gap-3">
         <div className="flex items-center gap-2">
-          <span className="w-1.75 h-1.75 rounded-full bg-[#E63946] shadow-[0_0_0_4px_rgba(230,57,70,0.16)]" />
-          <h2 className="text-[12.5px] font-bold tracking-[1.2px] uppercase text-[#57565C]">
+          <span className="w-1.75 h-1.75 rounded-full bg-brand shadow-[0_0_0_4px_rgba(230,57,70,0.16)]" />
+          <h2 className="text-[12.5px] font-bold tracking-[1.2px] uppercase text-ink-2">
             Trending Now
           </h2>
         </div>
 
-        {/* Trending items */}
         {trendingItems.map((item) => (
           <Link
             key={item.id}
-            href="/article"
-            className="flex gap-2.75 items-center bg-white border border-[#EFEDE7] rounded-[13px] p-2 flex-1 no-underline transition-all duration-250 hover:border-[#16151A] hover:translate-x-0.75 hover:shadow-[0_12px_24px_-16px_rgba(20,21,26,0.35)]"
+            href={`/blog/details/${item.slug}`}
+            className="flex gap-3 items-center bg-surface border border-line rounded-card p-2 flex-1 no-underline transition-all duration-250 hover:border-ink hover:translate-x-0.5 hover:shadow-[0_12px_24px_-16px_rgba(20,21,26,0.35)]"
           >
-            {/* Thumbnail + number badge */}
-            <div className="relative flex-none w-16.65 h-13.5 rounded-[10px] overflow-hidden">
+            <div className="relative flex-none w-16.5 h-13.5 rounded-input overflow-hidden">
               <Image
                 src={item.image}
                 alt={item.title}
@@ -143,29 +129,25 @@ export default function HeroSection() {
                 className="object-cover"
                 sizes="66px"
               />
-              <span className="absolute top-1 left-1 w-4.75 h-4.75 rounded-[6px] bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold flex items-center justify-center">
+              <span className="absolute top-1 left-1 w-4.75 h-4.75 rounded-md bg-black/60 backdrop-blur-sm text-white text-[10px] font-bold flex items-center justify-center">
                 {item.num}
               </span>
             </div>
 
-            {/* Title */}
             <div className="min-w-0">
-              <span className="text-[9.5px] font-bold tracking-[0.5px] uppercase text-[#E63946]">
+              <span className="text-[9.5px] font-bold tracking-[0.5px] uppercase text-brand">
                 {item.category}
               </span>
-              <h3
-                className="font-semibold text-[13.5px] leading-[1.2] mt-0.5 text-[#16151A] line-clamp-2 font-newsreader"
-              >
+              <h3 className="font-semibold text-[13.5px] leading-[1.2] mt-0.5 text-ink line-clamp-2 font-newsreader">
                 {item.title}
               </h3>
             </div>
           </Link>
         ))}
 
-        {/* See all button */}
         <Link
           href="/category"
-          className="text-center text-[13px] font-bold text-[#16151A] no-underline border border-[#EFEDE7] bg-white rounded-[12px] py-2.75 transition-all duration-200 hover:bg-[#16151A] hover:text-white"
+          className="text-center text-[13px] font-bold text-ink no-underline border border-line bg-surface rounded-card py-2.5 transition-all duration-200 hover:bg-ink hover:text-white"
         >
           See all trending →
         </Link>
