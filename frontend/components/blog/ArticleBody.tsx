@@ -1,21 +1,69 @@
 import Image from "next/image";
-import { Check } from "lucide-react";
+import { Check, Sparkles, Link2, Lightbulb } from "lucide-react";
 import { Article } from "@/lib/data/article-data";
 import Avatar from "./Avatar";
+import FloatingShareBar from "./FloatingShareBar";
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
 // `flow-root` = modern replacement for the old `clearfix` hack.
 function DropCapParagraph() {
   return (
-    <p className="mb-7 flow-root">
-      <span className="float-left font-newsreader text-[68px] leading-[0.82] font-semibold text-brand mr-3 mt-1.5">
+    <p className="mb-7 flow-root text-[17.5px] leading-[1.9] text-[#3A3940]">
+      <span className="float-left font-newsreader text-[72px] leading-[0.82] font-semibold text-brand mr-3 mt-1.5 select-none">
         এ
       </span>
       কটি তীব্র ডলার সংকটের মধ্য দিয়ে যাচ্ছে দেশের অর্থনীতি, আর তার সরাসরি প্রভাব পড়তে শুরু করেছে
       নিত্যপ্রয়োজনীয় ভোগ্যপণ্যের বাজারে। ব্যবসায়ী ও অর্থনীতিবিদরা বলছেন, সামনের রমজান ঘিরে এই চাপ আরও
       বাড়তে পারে।
     </p>
+  );
+}
+
+// New: Key takeaways callout — helps readers scan
+function KeyTakeaways() {
+  const items = [
+    "Dollar reserves are tight; LC openings are slowing.",
+    "Ramadan demand may amplify price pressure on staples.",
+    "Analysts favour reserve management short-term, structural reform long-term.",
+  ];
+  return (
+    <aside className="my-8 relative rounded-card-lg overflow-hidden border border-brand-tint bg-linear-to-br from-[#FFF8F9] to-[#FDECEE] p-6">
+      <div className="flex items-center gap-2.5 mb-3.5">
+        <span className="w-8 h-8 rounded-full bg-brand text-white flex items-center justify-center shadow-[0_6px_16px_-8px_rgba(230,57,70,0.6)]">
+          <Lightbulb size={15} strokeWidth={2.4} />
+        </span>
+        <h3 className="text-[13px] font-bold tracking-[1px] uppercase text-brand-strong">
+          Key Takeaways
+        </h3>
+      </div>
+      <ul className="flex flex-col gap-2.5">
+        {items.map((t) => (
+          <li key={t} className="flex gap-2.5 items-start text-[15px] text-ink-2 leading-[1.65]">
+            <Sparkles size={14} className="text-brand mt-1 shrink-0" strokeWidth={2.4} />
+            <span>{t}</span>
+          </li>
+        ))}
+      </ul>
+    </aside>
+  );
+}
+
+function SectionHeading({ id, children }: { id: string; children: React.ReactNode }) {
+  return (
+    <h2
+      id={id}
+      className="group scroll-mt-24 font-newsreader font-semibold text-[clamp(22px,2.6vw,30px)] leading-tight tracking-[-0.4px] text-ink mt-12 mb-5 pb-4 border-b border-line-2 flex items-baseline gap-2"
+    >
+      <span>{children}</span>
+      <a
+        href={`#${id}`}
+        aria-label="Anchor link"
+        className="opacity-0 group-hover:opacity-100 transition-opacity text-brand"
+      >
+        <Link2 size={16} strokeWidth={2.4} />
+      </a>
+    </h2>
   );
 }
 
@@ -104,8 +152,17 @@ function ImageGallery({ gallery }: { gallery: Article["gallery"] }) {
     <>
       <div className="grid grid-cols-2 gap-3.5 mb-3">
         {gallery.map((img) => (
-          <div key={img.src} className="relative aspect-square rounded-card overflow-hidden">
-            <Image src={img.src} alt={img.alt} fill className="object-cover" sizes="240px" />
+          <div
+            key={img.src}
+            className="relative aspect-4/3 rounded-card overflow-hidden group"
+          >
+            <Image
+              src={img.src}
+              alt={img.alt}
+              fill
+              className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              sizes="(max-width: 640px) 50vw, 320px"
+            />
           </div>
         ))}
       </div>
@@ -137,10 +194,12 @@ function Tags({ tags }: { tags: string[] }) {
 
 function AuthorCard({ author }: { author: Article["author"] }) {
   return (
-    <div className="flex gap-4 items-start mt-8 p-6 bg-surface border border-line rounded-card-lg">
-      <Avatar src={author.avatar} alt={author.name} size={64} className="border-2 border-line mt-0.5" />
+    <div className="flex gap-4 items-start mt-8 p-6 bg-linear-to-br from-surface to-surface-warm border border-line rounded-card-lg">
+      <Avatar src={author.avatar} alt={author.name} size={64} ring />
       <div className="min-w-0 flex-1">
-        <span className="text-[11px] font-bold tracking-[0.8px] uppercase text-brand">Written by</span>
+        <span className="text-[11px] font-bold tracking-[0.8px] uppercase text-brand">
+          Written by
+        </span>
         <p className="font-newsreader text-[21px] font-semibold mt-0.5 text-ink">{author.name}</p>
         <p className="text-[14px] leading-[1.6] text-ink-2 mt-1.5">{author.bio}</p>
       </div>
@@ -155,7 +214,12 @@ function AuthorCard({ author }: { author: Article["author"] }) {
 
 export default function ArticleBody({ article }: { article: Article }) {
   return (
-    <article className="max-w-[var(--read-max)] text-[17.5px] leading-[1.9] text-[#3A3940]">
+    <article
+      id="article-body"
+      className="relative max-w-(--read-max) text-[17.5px] leading-[1.9] text-[#3A3940]"
+    >
+      <FloatingShareBar />
+
       <DropCapParagraph />
 
       <p className="mb-7">
@@ -164,12 +228,9 @@ export default function ArticleBody({ article }: { article: Article }) {
         stocking less — and pricing in the risk.
       </p>
 
-      <h2
-        id="sec1"
-        className="font-newsreader font-semibold text-[28px] leading-tight tracking-[-0.4px] text-ink mt-12 mb-5 pb-4 border-b border-line-2"
-      >
-        আমদানি কমায় কী প্রভাব পড়ছে
-      </h2>
+      <KeyTakeaways />
+
+      <SectionHeading id="sec1">আমদানি কমায় কী প্রভাব পড়ছে</SectionHeading>
 
       <p className="mb-7">
         উৎপাদন খরচ বেড়ে যাওয়ায় অনেক শিল্প উৎপাদন কমিয়ে দিতে বা বন্ধ রাখতে বাধ্য হচ্ছে। ফলে রপ্তানি
@@ -185,12 +246,7 @@ export default function ArticleBody({ article }: { article: Article }) {
 
       <BulletList bullets={article.bullets} />
 
-      <h2
-        id="sec2"
-        className="font-newsreader font-semibold text-[28px] leading-tight tracking-[-0.4px] text-ink mt-12 mb-5 pb-4 border-b border-line-2"
-      >
-        How analysts are modelling the risk
-      </h2>
+      <SectionHeading id="sec2">How analysts are modelling the risk</SectionHeading>
 
       <p className="mb-7">
         Some teams are publishing open dashboards that track the reserve position daily. A simplified
