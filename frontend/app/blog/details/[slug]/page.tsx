@@ -42,11 +42,13 @@ export default async function DetailsPage({ params }: { params: Params }) {
       {/* Single container + flex-col gap = one place to tune vertical rhythm */}
       <main className="container py-10 flex flex-col gap-12">
         <ArticleHeader article={article} />
-        <ArticleHero article={article} />
 
-        {/* Body + sticky sidebar. Sidebar width comes from --sidebar-w. */}
-        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_var(--sidebar-w)] gap-10 items-start">
-          <ArticleBody article={article} />
+        {/* Hero + body share the left column; sidebar starts at the hero top. */}
+        <div className="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-8 xl:gap-10 items-start">
+          <div className="flex flex-col gap-10 min-w-0">
+            <ArticleHero article={article} />
+            <ArticleBody article={article} />
+          </div>
           <ArticleSidebar article={article} />
         </div>
 

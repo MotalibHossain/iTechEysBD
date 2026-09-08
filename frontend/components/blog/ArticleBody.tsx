@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Check, Sparkles, Link2, Lightbulb } from "lucide-react";
 import { Article } from "@/lib/data/article-data";
 import Avatar from "./Avatar";
-import FloatingShareBar from "./FloatingShareBar";
 
 // ── Sub-components ────────────────────────────────────────────────────────────
 
@@ -216,10 +215,8 @@ export default function ArticleBody({ article }: { article: Article }) {
   return (
     <article
       id="article-body"
-      className="relative max-w-(--read-max) text-[17.5px] leading-[1.9] text-[#3A3940]"
+      className="relative text-[17.5px] leading-[1.9] text-[#3A3940]"
     >
-      <FloatingShareBar />
-
       <DropCapParagraph />
 
       <p className="mb-7">
