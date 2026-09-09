@@ -30,16 +30,22 @@ interface AvatarProps {
   alt: string;
   size?: number;
   className?: string;
+  ring?: boolean;
 }
 
-export default function Avatar({ src, alt, size = 44, className = "" }: AvatarProps) {
+export default function Avatar({ src, alt, size = 44, className = "", ring = false }: AvatarProps) {
   const [failed, setFailed] = useState(false);
+  const dim = { width: size, height: size, minWidth: size, minHeight: size };
+
+  const wrapperBase =
+    "relative rounded-full overflow-hidden shrink-0 flex items-center justify-center " +
+    (ring ? "ring-2 ring-white shadow-[0_2px_10px_rgba(20,21,26,0.15)] " : "");
 
   if (failed || !src) {
     return (
       <div
-        className={`rounded-full flex items-center justify-center font-bold select-none shrink-0 ${colorClass(alt)} ${className}`}
-        style={{ width: size, height: size, fontSize: Math.round(size * 0.37) }}
+        className={`${wrapperBase} font-bold select-none ${colorClass(alt)} ${className}`}
+        style={{ ...dim, fontSize: Math.round(size * 0.37) }}
         aria-label={alt}
       >
         {getInitials(alt)}
@@ -48,13 +54,15 @@ export default function Avatar({ src, alt, size = 44, className = "" }: AvatarPr
   }
 
   return (
-    <Image
-      src={src}
-      alt={alt}
-      width={size}
-      height={size}
-      className={`rounded-full object-cover shrink-0 ${className}`}
-      onError={() => setFailed(true)}
-    />
+    <div className={`${wrapperBase} bg-surface-warm ${className}`} style={dim} aria-label={alt}>
+      <Image
+        src={src}
+        alt={alt}
+        width={size}
+        height={size}
+        className="w-full h-full object-cover"
+        onError={() => setFailed(true)}
+      />
+    </div>
   );
 }
