@@ -71,7 +71,7 @@ const Header = () => {
           </button>
 
           <Link
-            href="/save-post"
+            href="/create-post"
             className="hidden md:inline-flex items-center gap-1.75 h-10 px-4 rounded-btn bg-ink text-white text-[13.5px] font-bold no-underline transition-colors duration-200 hover:bg-brand"
           >
             <Plus size={15} strokeWidth={2.2} />
@@ -110,7 +110,7 @@ const Header = () => {
             </Link>
           ))}
           <Link
-            href="/save-post"
+            href="/create-post"
             onClick={() => setMenuOpen(false)}
             className="block text-center no-underline bg-ink text-white text-[15px] font-bold py-3.25 rounded-btn mt-3.5 hover:bg-brand transition-colors duration-200"
           >
