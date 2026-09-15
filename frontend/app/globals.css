@@ -184,6 +184,19 @@
   100% { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes service-live-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; box-shadow: 0 0 0 0 rgb(255 255 255 / 0.25); }
+  50% { transform: scale(1.18); opacity: 0.78; box-shadow: 0 0 0 6px rgb(255 255 255 / 0); }
+}
+
+@keyframes service-activity-rise {
+  0%, 100% { transform: scaleY(0.7); opacity: 0.55; transform-origin: bottom; }
+  50% { transform: scaleY(1); opacity: 1; transform-origin: bottom; }
+}
+
+.service-live-dot { animation: service-live-pulse 1.8s ease-in-out infinite; }
+.service-activity-bar { animation: service-activity-rise 1.8s ease-in-out infinite; }
+
 /* shadcn neutrals — dark */
 .dark {
   --background: oklch(0.145 0 0);

@@ -16,7 +16,11 @@ export type ContactInfo = {
 export type ServiceItem = {
   glyph: string;
   title: string;
+  eyebrow: string;
   description: string;
+  deliverables: string;
+  bestFor: string;
+  includes: string[];
 };
 
 export type ServicePlan = {
@@ -70,12 +74,12 @@ export const contactFields = [
 ] as const;
 
 export const serviceItems: ServiceItem[] = [
-  { glyph: "✶", title: "Content Strategy", description: "Editorial calendars, audience research and SEO roadmaps that turn readers into subscribers." },
-  { glyph: "✎", title: "Writing & Editing", description: "Professional writers and editors fluent in English and বাংলা, across tech, business and culture." },
-  { glyph: "◧", title: "Theme Development", description: "Custom React + Tailwind + Next.js themes — fast, accessible and beautiful on every device." },
-  { glyph: "◎", title: "SEO & Growth", description: "Technical SEO, Core Web Vitals tuning and analytics so your best stories actually get found." },
-  { glyph: "✉", title: "Newsletter Setup", description: "From welcome flows to monetization — we build newsletter funnels that compound over time." },
-  { glyph: "❖", title: "Migration", description: "Move from WordPress, Medium or Ghost with zero downtime and all your SEO equity intact." },
+  { glyph: "01", title: "Blog management", eyebrow: "Keep publishing consistent", description: "We help run the publishing side of your blog, from a workable editorial calendar to uploading, formatting and maintaining finished articles.", deliverables: "Editorial calendar, publishing workflow, on-page checks", bestFor: "Teams that have good ideas but need a dependable publishing rhythm.", includes: ["Editorial calendar and topic tracking", "Article upload, formatting and image placement", "Category, tag and internal-link cleanup"] },
+  { glyph: "02", title: "Web development", eyebrow: "Build a better home online", description: "We design and develop fast, responsive websites for publishers, small teams and growing businesses using practical modern tools.", deliverables: "Page design, Next.js development, responsive implementation", bestFor: "Businesses, creators and publishers who need a polished website that is easy to maintain.", includes: ["Responsive page and component development", "Contact forms and practical integrations", "Launch support and handover guidance"] },
+  { glyph: "03", title: "Content strategy", eyebrow: "Know what to publish next", description: "We turn your goals, audience and existing content into a clear plan that gives every article a job and every channel a direction.", deliverables: "Audience review, topic pillars, 90-day content plan", bestFor: "People starting a blog or trying to make an inconsistent content effort useful.", includes: ["Audience and existing-content review", "Topic pillars and search-informed ideas", "A realistic 30 or 90-day publishing plan"] },
+  { glyph: "04", title: "Writing & editing", eyebrow: "Make useful ideas readable", description: "We research, write and edit helpful content in English and বাংলা, with an editorial process suited to technical and web-focused subjects.", deliverables: "Briefs, articles, editing, fact and readability checks", bestFor: "Teams that need clear, trustworthy writing but do not have an editor available every day.", includes: ["Article briefs shaped around a clear reader", "Original writing or careful structural editing", "Fact, clarity, grammar and publishing checks"] },
+  { glyph: "05", title: "Technical support", eyebrow: "Fix the things that slow you down", description: "We troubleshoot website issues, improve existing pages and handle the technical tasks that are easy to postpone but costly to ignore.", deliverables: "Bug fixes, content updates, integrations and maintenance", bestFor: "Website owners with a bug, update or technical task blocking their next step.", includes: ["Issue diagnosis and a plain-language explanation", "Focused fixes for pages, forms or layouts", "Small updates, maintenance and improvement work"] },
+  { glyph: "06", title: "SEO & performance", eyebrow: "Help the right people find you", description: "We improve the foundations behind discoverability, from technical SEO and structured content to speed, accessibility and analytics.", deliverables: "SEO audit, performance fixes, metadata and measurement", bestFor: "Sites that publish regularly but are difficult to find, slow to use or hard to measure.", includes: ["Technical SEO and metadata review", "Speed, mobile and accessibility improvements", "Analytics setup and a prioritized action list"] },
 ];
 
 export const servicePlans: ServicePlan[] = [
