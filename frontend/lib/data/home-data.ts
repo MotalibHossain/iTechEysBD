@@ -108,7 +108,7 @@ export const latestStories = [
     excerpt: "Not every product needs another notification. Restraint as a competitive feature.",
   },
   {
-    id: "g1",
+    id: "g5",
     slug: "dollar-crisis-ramadan-commodity-shortage",
     image: "https://picsum.photos/seed/g1/560/340",
     avatar: "https://picsum.photos/seed/ga1/60/60",
@@ -119,8 +119,8 @@ export const latestStories = [
     title: "ডলার সংকটে রমজানে ভোগ্যপণ্যের সংকটের আশঙ্কা",
     excerpt: "রপ্তানি আয় ও রেমিট্যান্স সামান্য বাড়লেও আমদানি কমায় বাজারে চাপ পড়ছে।",
   },
-   {
-    id: "g3",
+  {
+   id: "g6",
     slug: "new-ai-model-changing-bangla-language-technology",
     image: "https://picsum.photos/seed/g3/560/340",
     avatar: "https://picsum.photos/seed/ga3/60/60",
