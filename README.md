@@ -21,6 +21,22 @@ Bilingual (Bangla + English) tech blog platform — Next.js frontend with Django
 
 ## Getting Started
 
+### Backend
+
+```bash
+cd backend
+python -m venv .venv
+# Windows PowerShell: .venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
+
+The API is available at `http://127.0.0.1:8000/api/`. Use `/api/health/` to
+verify that the backend is running.
+
+### Frontend
+
 ```bash
 cd frontend
 npm install
