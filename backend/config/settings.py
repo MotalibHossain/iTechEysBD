@@ -12,6 +12,12 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 import os
 from pathlib import Path
+from urllib.parse import urlparse
+
+from dotenv import load_dotenv
+
+
+load_dotenv(Path(__file__).resolve().parents[2] / '.env')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -79,12 +85,26 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/5.2/ref/settings/#databases
+# PostgreSQL is required for this project.
+database_url = os.getenv('DATABASE_URL')
+
+if not database_url:
+    raise ValueError(
+        'DATABASE_URL is required. Configure PostgreSQL in the project root .env file.'
+    )
+
+parsed_database_url = urlparse(database_url)
+if parsed_database_url.scheme not in ('postgres', 'postgresql'):
+    raise ValueError('DATABASE_URL must use postgres:// or postgresql://')
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': parsed_database_url.path.lstrip('/'),
+        'USER': parsed_database_url.username or '',
+        'PASSWORD': parsed_database_url.password or '',
+        'HOST': parsed_database_url.hostname or 'localhost',
+        'PORT': str(parsed_database_url.port or 5432),
     }
 }
 
